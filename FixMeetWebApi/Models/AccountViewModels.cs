@@ -65,11 +65,11 @@ namespace FixMeetWebApi.Models
 
     public class RegisterViewModel
     {
-        [Key]
-        [HiddenInput(DisplayValue = true)]
-        [Display(Name = "User ID")]
-        [Required(ErrorMessage = "This field is required")]
-        public int UserID { get; set; }
+        //[Key]
+        //[HiddenInput(DisplayValue = true)]
+        //[Display(Name = "User ID")]
+        //[Required(ErrorMessage = "This field is required")]
+        //public int UserID { get; set; }
 
         [Display(Name = "First Name")]
         [Required(ErrorMessage = "This field is required")]
@@ -94,18 +94,6 @@ namespace FixMeetWebApi.Models
         [Required(ErrorMessage = "This field is required")]
         public string UserName { get; set; }
 
-
-        //[Required]
-        //[StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        //[DataType(DataType.Password)]
-        //[Display(Name = "Password")]
-        //public string Password { get; set; }
-
-        //[DataType(DataType.Password)]
-        //[Display(Name = "Confirm password")]
-        //[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        //public string ConfirmPassword { get; set; }
-
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
@@ -122,39 +110,6 @@ namespace FixMeetWebApi.Models
         public string Address { get; set; }
 
 
-        //[Required]
-        //[EmailAddress]
-        //[Display(Name = "Email")]
-        //public string Email { get; set; }
-
-        //[Required]
-        //[StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        //[DataType(DataType.Password)]
-        //[Display(Name = "Password")]
-        //public string Password { get; set; }
-
-        //[DataType(DataType.Password)]
-        //[Display(Name = "Confirm password")]
-        //[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        //public string ConfirmPassword { get; set; }
-
-
-
-        //[Required]
-        //[EmailAddress]
-        //[Display(Name = "Email")]
-        //public string Email { get; set; }
-
-        //[Required]
-        //[StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        //[DataType(DataType.Password)]
-        //[Display(Name = "Password")]
-        //public string Password { get; set; }
-
-        //[DataType(DataType.Password)]
-        //[Display(Name = "Confirm password")]
-        //[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        //public string ConfirmPassword { get; set; }
     }
 
     public class ResetPasswordViewModel
