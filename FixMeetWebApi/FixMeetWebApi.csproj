@@ -270,10 +270,20 @@
     <Compile Include="Migrations\202006101620166_Initial.Designer.cs">
       <DependentUpon>202006101620166_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006101852441_Second.cs" />
+    <Compile Include="Migrations\202006101852441_Second.Designer.cs">
+      <DependentUpon>202006101852441_Second.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006101900583_third.cs" />
+    <Compile Include="Migrations\202006101900583_third.Designer.cs">
+      <DependentUpon>202006101900583_third.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -354,6 +364,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202006101620166_Initial.resx">
       <DependentUpon>202006101620166_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006101852441_Second.resx">
+      <DependentUpon>202006101852441_Second.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006101900583_third.resx">
+      <DependentUpon>202006101900583_third.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

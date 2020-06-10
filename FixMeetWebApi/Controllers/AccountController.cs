@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using FixMeetWebApi.Models;
+using Microsoft.Ajax.Utilities;
 
 namespace FixMeetWebApi.Controllers
 {
@@ -152,6 +153,10 @@ namespace FixMeetWebApi.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                //if(model.UserRole.ToString() == "Customer")
+                //{
+
+                //}
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

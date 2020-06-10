@@ -109,6 +109,19 @@ namespace FixMeetWebApi.Models
         [Display(Name = "Address")]
         public string Address { get; set; }
 
+        [Required]
+        [Display(Name = "UserRole")]
+        [DisplayFormat(NullDisplayText = "No Role")]
+        public UserRole UserRole { get; set; }
+
+        [Display(Name = "Category")]
+        [DisplayFormat(NullDisplayText = "No Category")]
+        public Category Category { get; set; }
+
+
+        [Display(Name = "Radius")]
+        public string Radius { get; set; }
+
 
     }
 
