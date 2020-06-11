@@ -24,7 +24,7 @@
             @Html.DisplayNameFor(model => model.UserID)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OpenOrClosed)
+            @Html.DisplayNameFor(model => model.IsOpen)
         </th>
         <th></th>
     </tr>
@@ -44,7 +44,7 @@
         @Html.DisplayFor(modelItem => item.UserID)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.OpenOrClosed)
+        @Html.DisplayFor(modelItem => item.IsOpen)
     </td>
     <td>
         @Html.ActionLink("Edit", "Edit", new { id = item.RequestID }) |

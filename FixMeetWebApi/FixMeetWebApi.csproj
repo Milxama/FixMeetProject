@@ -284,6 +284,10 @@
     <Compile Include="Migrations\202006112304584_four.Designer.cs">
       <DependentUpon>202006112304584_four.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006112312577_five.cs" />
+    <Compile Include="Migrations\202006112312577_five.Designer.cs">
+      <DependentUpon>202006112312577_five.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -391,6 +395,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006112304584_four.resx">
       <DependentUpon>202006112304584_four.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006112312577_five.resx">
+      <DependentUpon>202006112312577_five.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

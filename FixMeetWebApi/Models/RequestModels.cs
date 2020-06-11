@@ -23,7 +23,7 @@ namespace FixMeetWebApi.Models
 
         //public Booking? Booking { get; set; } //refernce to booking if exists, else will be NULL
         [Required]
-        public bool OpenOrClosed { get; set; }
+        public bool IsOpen { get; set; }
         //FK
         public string UserID { get; set; }
 
