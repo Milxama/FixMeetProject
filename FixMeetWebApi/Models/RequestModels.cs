@@ -22,7 +22,8 @@ namespace FixMeetWebApi.Models
         // public ICollection<Offer> OffersFromSuppliers { get; set; }
 
         //public Booking? Booking { get; set; } //refernce to booking if exists, else will be NULL
-
+        [Required]
+        public bool OpenOrClosed { get; set; }
         //FK
         public string UserID { get; set; }
 
