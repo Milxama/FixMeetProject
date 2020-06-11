@@ -31,5 +31,9 @@ namespace FixMeetWebApi.Models
         }
 
         public System.Data.Entity.DbSet<FixMeetWebApi.Models.RequestsModels> RequestsModels { get; set; }
+
+        public System.Data.Entity.DbSet<FixMeetWebApi.Models.StudentModels> StudentModels { get; set; }
+
+        public System.Data.Entity.DbSet<FixMeetWebApi.Models.RequestModels> RequestModels { get; set; }
     }
 }
