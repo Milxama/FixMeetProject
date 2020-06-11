@@ -29,5 +29,7 @@ namespace FixMeetWebApi.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<FixMeetWebApi.Models.RequestsModels> RequestsModels { get; set; }
     }
 }
