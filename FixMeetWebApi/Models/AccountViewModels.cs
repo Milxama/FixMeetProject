@@ -65,11 +65,11 @@ namespace FixMeetWebApi.Models
 
     public class RegisterViewModel
     {
-        //[Key]
-        //[HiddenInput(DisplayValue = true)]
-        //[Display(Name = "User ID")]
-        //[Required(ErrorMessage = "This field is required")]
-        //public int UserID { get; set; }
+        [Key]
+        [HiddenInput(DisplayValue = true)]
+        [Display(Name = "User ID")]
+        [Required(ErrorMessage = "This field is required")]
+        public int UserID { get; set; }
 
         [Display(Name = "First Name")]
         [Required(ErrorMessage = "This field is required")]
