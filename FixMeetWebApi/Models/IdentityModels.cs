@@ -32,5 +32,7 @@ namespace FixMeetWebApi.Models
 
 
         public DbSet<RequestModels> RequestModels { get; set; }
+
+        public DbSet<OfferModels> OfferModels { get; set; }
     }
 }

@@ -263,6 +263,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OfferModelsController.cs" />
     <Compile Include="Controllers\RequestModelsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -275,11 +276,16 @@
     <Compile Include="Migrations\202006112225379_second.Designer.cs">
       <DependentUpon>202006112225379_second.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006112240122_third.cs" />
+    <Compile Include="Migrations\202006112240122_third.Designer.cs">
+      <DependentUpon>202006112240122_third.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\OfferModels.cs" />
     <Compile Include="Models\RequestModels.cs" />
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -347,6 +353,11 @@
     <Content Include="Views\RequestModels\Details.cshtml" />
     <Content Include="Views\RequestModels\Edit.cshtml" />
     <Content Include="Views\RequestModels\Index.cshtml" />
+    <Content Include="Views\OfferModels\Create.cshtml" />
+    <Content Include="Views\OfferModels\Delete.cshtml" />
+    <Content Include="Views\OfferModels\Details.cshtml" />
+    <Content Include="Views\OfferModels\Edit.cshtml" />
+    <Content Include="Views\OfferModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -370,6 +381,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006112225379_second.resx">
       <DependentUpon>202006112225379_second.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006112240122_third.resx">
+      <DependentUpon>202006112240122_third.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
