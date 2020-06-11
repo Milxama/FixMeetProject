@@ -271,21 +271,9 @@
     <Compile Include="Migrations\202006101620166_Initial.Designer.cs">
       <DependentUpon>202006101620166_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202006101852441_Second.cs" />
-    <Compile Include="Migrations\202006101852441_Second.Designer.cs">
-      <DependentUpon>202006101852441_Second.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006101900583_third.cs" />
-    <Compile Include="Migrations\202006101900583_third.Designer.cs">
-      <DependentUpon>202006101900583_third.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006111803450_four.cs" />
-    <Compile Include="Migrations\202006111803450_four.Designer.cs">
-      <DependentUpon>202006111803450_four.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006111809559_fifth.cs" />
-    <Compile Include="Migrations\202006111809559_fifth.Designer.cs">
-      <DependentUpon>202006111809559_fifth.cs</DependentUpon>
+    <Compile Include="Migrations\202006112225379_second.cs" />
+    <Compile Include="Migrations\202006112225379_second.Designer.cs">
+      <DependentUpon>202006112225379_second.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -380,17 +368,8 @@
     <EmbeddedResource Include="Migrations\202006101620166_Initial.resx">
       <DependentUpon>202006101620166_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006101852441_Second.resx">
-      <DependentUpon>202006101852441_Second.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006101900583_third.resx">
-      <DependentUpon>202006101900583_third.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006111803450_four.resx">
-      <DependentUpon>202006111803450_four.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006111809559_fifth.resx">
-      <DependentUpon>202006111809559_fifth.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006112225379_second.resx">
+      <DependentUpon>202006112225379_second.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

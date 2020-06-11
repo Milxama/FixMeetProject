@@ -3,7 +3,7 @@ namespace FixMeetWebApi.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class fifth : DbMigration
+    public partial class second : DbMigration
     {
         public override void Up()
         {

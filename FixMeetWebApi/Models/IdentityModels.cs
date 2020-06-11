@@ -30,10 +30,7 @@ namespace FixMeetWebApi.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<FixMeetWebApi.Models.RequestsModels> RequestsModels { get; set; }
 
-        public System.Data.Entity.DbSet<FixMeetWebApi.Models.StudentModels> StudentModels { get; set; }
-
-        public System.Data.Entity.DbSet<FixMeetWebApi.Models.RequestModels> RequestModels { get; set; }
+        public DbSet<RequestModels> RequestModels { get; set; }
     }
 }

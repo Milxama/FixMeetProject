@@ -7,13 +7,13 @@ namespace FixMeetWebApi.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class fifth : IMigrationMetadata
+    public sealed partial class second : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(fifth));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(second));
         
         string IMigrationMetadata.Id
         {
-            get { return "202006111809559_fifth"; }
+            get { return "202006112225379_second"; }
         }
         
         string IMigrationMetadata.Source
