@@ -10,8 +10,13 @@
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        <li>@Html.ActionLink("Requests", "Create", "RequestsModels", routeValues: null, htmlAttributes: new { id = "requestsLink" })</li>
+
     </ul>
     }
+
+
+
 }
 else
 {
