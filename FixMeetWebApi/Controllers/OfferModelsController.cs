@@ -11,110 +11,109 @@ using Microsoft.AspNet.Identity;
 
 namespace FixMeetWebApi.Controllers
 {
-    public class RequestModelsController : Controller
+    public class OfferModelsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: RequestModels
+        // GET: OfferModels
         public ActionResult Index()
         {
-            return View(db.RequestModels.ToList());
+            return View(db.OfferModels.ToList());
         }
 
-        // GET: RequestModels/Details/5
+        // GET: OfferModels/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RequestModels requestModels = db.RequestModels.Find(id);
-            if (requestModels == null)
+            OfferModels offerModels = db.OfferModels.Find(id);
+            if (offerModels == null)
             {
                 return HttpNotFound();
             }
-            return View(requestModels);
+            return View(offerModels);
         }
 
-        // GET: RequestModels/Create
+        // GET: OfferModels/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: RequestModels/Create
+        // POST: OfferModels/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Category,Description")] RequestModels requestModels)
+        public ActionResult Create([Bind(Include = "Description,RequestID")] OfferModels offerModels)
         {
-            requestModels.RequestDate = DateTime.Now;
-            requestModels.UserID = User.Identity.GetUserId();
-            requestModels.IsOpen = true;
+            offerModels.OfferDate = DateTime.Now;
+            offerModels.UserID = User.Identity.GetUserId();
             if (ModelState.IsValid)
             {
-                db.RequestModels.Add(requestModels);
+                db.OfferModels.Add(offerModels);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(requestModels);
+            return View(offerModels);
         }
 
-        // GET: RequestModels/Edit/5
+        // GET: OfferModels/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RequestModels requestModels = db.RequestModels.Find(id);
-            if (requestModels == null)
+            OfferModels offerModels = db.OfferModels.Find(id);
+            if (offerModels == null)
             {
                 return HttpNotFound();
             }
-            return View(requestModels);
+            return View(offerModels);
         }
 
-        // POST: RequestModels/Edit/5
+        // POST: OfferModels/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RequestID,RequestDate,Category,Description,UserID")] RequestModels requestModels)
+        public ActionResult Edit([Bind(Include = "OfferID,OfferDate,Description,UserID,RequestID")] OfferModels offerModels)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(requestModels).State = EntityState.Modified;
+                db.Entry(offerModels).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(requestModels);
+            return View(offerModels);
         }
 
-        // GET: RequestModels/Delete/5
+        // GET: OfferModels/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RequestModels requestModels = db.RequestModels.Find(id);
-            if (requestModels == null)
+            OfferModels offerModels = db.OfferModels.Find(id);
+            if (offerModels == null)
             {
                 return HttpNotFound();
             }
-            return View(requestModels);
+            return View(offerModels);
         }
 
-        // POST: RequestModels/Delete/5
+        // POST: OfferModels/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            RequestModels requestModels = db.RequestModels.Find(id);
-            db.RequestModels.Remove(requestModels);
+            OfferModels offerModels = db.OfferModels.Find(id);
+            db.OfferModels.Remove(offerModels);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

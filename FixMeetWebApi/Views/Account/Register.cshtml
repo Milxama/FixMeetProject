@@ -68,22 +68,24 @@
     <div class="form-group">
         @Html.LabelFor(m => m.UserRole, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.EnumDropDownListFor(m => m.UserRole, new { @class = "form-control" })
+            @Html.EnumDropDownListFor(m => m.UserRole, new { @id = "RoleSelectList", @class = "form-control", onchange = "setRoleSelected()" })
+        </div>
+    </div>
+    <div id="CustomerExtraDetailes" style="display:none;">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Category, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(m => m.Category, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Radius, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Radius, new { @class = "form-control" })
+            </div>
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.Category, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.EnumDropDownListFor(m => m.Category, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Radius, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Radius, new { @class = "form-control" })
-        </div>
-    </div>
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
@@ -95,3 +97,20 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script>
+
+    //document.onload = "setRoleSelectd()";
+    //$(document).ready(function () {
+    //    setRoleSelectd();
+    //});
+    function setRoleSelected() {
+        var selectedRole = document.getElementById("RoleSelectList").value;
+        if (selectedRole == 0) {
+            document.getElementById("CustomerExtraDetailes").style.display = "none";
+        }
+        else {
+            document.getElementById("CustomerExtraDetailes").style.display = "block";
+        }
+    }
+</script>
