@@ -269,37 +269,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202006101620166_Initial.cs" />
-    <Compile Include="Migrations\202006101620166_Initial.Designer.cs">
-      <DependentUpon>202006101620166_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006112225379_second.cs" />
-    <Compile Include="Migrations\202006112225379_second.Designer.cs">
-      <DependentUpon>202006112225379_second.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006112240122_third.cs" />
-    <Compile Include="Migrations\202006112240122_third.Designer.cs">
-      <DependentUpon>202006112240122_third.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006112304584_four.cs" />
-    <Compile Include="Migrations\202006112304584_four.Designer.cs">
-      <DependentUpon>202006112304584_four.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006112312577_five.cs" />
-    <Compile Include="Migrations\202006112312577_five.Designer.cs">
-      <DependentUpon>202006112312577_five.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006112323438_six.cs" />
-    <Compile Include="Migrations\202006112323438_six.Designer.cs">
-      <DependentUpon>202006112323438_six.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006120742176_seven.cs" />
-    <Compile Include="Migrations\202006120742176_seven.Designer.cs">
-      <DependentUpon>202006120742176_seven.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202006120756318_eight.cs" />
-    <Compile Include="Migrations\202006120756318_eight.Designer.cs">
-      <DependentUpon>202006120756318_eight.cs</DependentUpon>
+    <Compile Include="Migrations\202006121524567_initial.cs" />
+    <Compile Include="Migrations\202006121524567_initial.Designer.cs">
+      <DependentUpon>202006121524567_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -403,29 +375,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202006101620166_Initial.resx">
-      <DependentUpon>202006101620166_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006112225379_second.resx">
-      <DependentUpon>202006112225379_second.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006112240122_third.resx">
-      <DependentUpon>202006112240122_third.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006112304584_four.resx">
-      <DependentUpon>202006112304584_four.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006112312577_five.resx">
-      <DependentUpon>202006112312577_five.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006112323438_six.resx">
-      <DependentUpon>202006112323438_six.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006120742176_seven.resx">
-      <DependentUpon>202006120742176_seven.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006120756318_eight.resx">
-      <DependentUpon>202006120756318_eight.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006121524567_initial.resx">
+      <DependentUpon>202006121524567_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

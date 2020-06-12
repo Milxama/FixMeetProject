@@ -3,10 +3,46 @@ namespace FixMeetWebApi.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.BookingModels",
+                c => new
+                    {
+                        BookingID = c.Int(nullable: false, identity: true),
+                        BookingDate = c.DateTime(nullable: false),
+                        Description = c.String(nullable: false),
+                        OfferID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.BookingID);
+            
+            CreateTable(
+                "dbo.OfferModels",
+                c => new
+                    {
+                        OfferID = c.Int(nullable: false, identity: true),
+                        OfferDate = c.DateTime(nullable: false),
+                        Description = c.String(nullable: false),
+                        UserID = c.String(),
+                        RequestID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.OfferID);
+            
+            CreateTable(
+                "dbo.RequestModels",
+                c => new
+                    {
+                        RequestID = c.Int(nullable: false, identity: true),
+                        RequestDate = c.DateTime(nullable: false),
+                        Category = c.Int(nullable: false),
+                        Description = c.String(nullable: false),
+                        IsOpen = c.Boolean(nullable: false),
+                        UserID = c.String(),
+                    })
+                .PrimaryKey(t => t.RequestID);
+            
             CreateTable(
                 "dbo.AspNetRoles",
                 c => new
@@ -94,6 +130,9 @@ namespace FixMeetWebApi.Migrations
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.RequestModels");
+            DropTable("dbo.OfferModels");
+            DropTable("dbo.BookingModels");
         }
     }
 }
