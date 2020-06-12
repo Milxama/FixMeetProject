@@ -52,6 +52,7 @@ namespace FixMeetWebApi.Controllers
             requestModels.RequestDate = DateTime.Now;
             requestModels.UserID = User.Identity.GetUserId();
             requestModels.IsOpen = true;
+            requestModels.Offers = null;
             if (ModelState.IsValid)
             {
                 db.RequestModels.Add(requestModels);
