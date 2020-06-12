@@ -161,17 +161,17 @@ namespace FixMeetWebApi.Controllers
                
                 var user = new ApplicationUser {
                     UserName = model.Email,
-                    Email = model.Email
+                    Email = model.Email,
                     //UserID = model.UserID,
-                    //FirstName = model.FirstName,
-                    //LastName = model.LastName
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
                     ////NickName = model.UserName,
-                    //Address = model.Address,
+                    Address = model.Address,
                     //Password = model.Password,
                     //ConfirmPassword = model.ConfirmPassword,
-                    //UserRole = model.UserRole,
-                    //Category = model.Category,
-                    //Radius = model.Radius
+                    UserRole = model.UserRole,
+                    Category = model.Category,
+                    Radius = model.Radius
                 };
                 //if(model.UserRole.ToString() == "Customer")
                 //{

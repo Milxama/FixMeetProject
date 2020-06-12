@@ -47,13 +47,28 @@ namespace FixMeetWebApi.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Description,RequestID")] OfferModels offerModels)
+        public ActionResult Create([Bind(Include = "Description")] OfferModels offerModels)
         {
+           
+            
+            
             offerModels.OfferDate = DateTime.Now;
             offerModels.UserID = User.Identity.GetUserId();
+            
+            var userName = User.Identity.GetUserName();
+            var requestId = db.RequestModels.Where(r => r.UserID == "04838a08-2b8f-4dce-ad89-708dc6ebe3f8").FirstOrDefault().RequestID;
+            offerModels.RequestID = requestId;
+            var request = db.RequestModels.Where(r => r.RequestID == requestId).FirstOrDefault();
+            offerModels.Request = request;
+            
+
+
+            //var userName = User.Identity.GetUserName();
+            //var requestId = db.Users.Where(u => u.UserName == userName).FirstOrDefault().;
             if (ModelState.IsValid)
             {
                 db.OfferModels.Add(offerModels);
+                request.Offers.Add(offerModels);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

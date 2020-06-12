@@ -25,5 +25,7 @@ namespace FixMeetWebApi.Models
         [Required]
         public int RequestID { get; set; }
 
+        public virtual RequestModels Request { get; set; }
+
     }
 }
