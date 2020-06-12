@@ -1,34 +1,55 @@
 ﻿@using Microsoft.AspNet.Identity
+@using System.Data.Entity;
+@using System.Web.Mvc;
+@using FixMeetWebApi.Models;
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        @{
-            //var userMail = User.Identity.GetUserName();
-            //var user = User.Identity.Name;
+        <ul class="nav navbar-nav navbar-right">
+            @{
 
-        }
-        @*@if(user.role == 0) //if costumer
-        {
-            //show this
-        }
-        else
-        {
+                //var userMail = User.Identity.GetUserName();
+                //var user = User.Identity.Name;
+                var context = new ApplicationDbContext();
+                var username = User.Identity.Name;
+                if (!string.IsNullOrEmpty(username))
+                {
+                    var user = context.Users.SingleOrDefault(u => u.UserName == username);
+                    var userRole = user.Roles.ToString();
+                }
 
-        }*@
+                //if (userRole == "Customer) //if costumer
+                //{
+                //    //show this
+                //}
+            }
 
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-        <li>@Html.ActionLink("Create Request", "Create", "RequestModels", routeValues: null, htmlAttributes: new { id = "requestLink" })</li>
-        <li>@Html.ActionLink("Create Offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = "offertLink" })</li>
-        <li>@Html.ActionLink("Create Booking", "Create", "BookingModels", routeValues: null, htmlAttributes: new { id = "bookingtLink" })</li>
+            @*@{ 
 
-    </ul>
+                if (userRole == 0) //if costumer
+                {
+                    //show this
+                }
+                else
+                {
+
+                }
+
+                }*@
+
+            <li>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+            <li>@Html.ActionLink("Create Request", "Create", "RequestModels", routeValues: null, htmlAttributes: new { id = "requestLink" })</li>
+            <li>@Html.ActionLink("Create Offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = "offertLink" })</li>
+            <li>@Html.ActionLink("Create Booking", "Create", "BookingModels", routeValues: null, htmlAttributes: new { id = "bookingtLink" })</li>
+
+        </ul>
     }
 
 

@@ -157,7 +157,20 @@ namespace FixMeetWebApi.Controllers
             }
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { 
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    ConfirmEmail = model.ConfirmEmail,
+                    Password = model.Password,
+                    ConfirmPassword = model.ConfirmPassword,
+                    Address = model.Address,
+                    UserRole = model.UserRole,
+                    Category = model.Category,
+                    Radius = model.Radius
+
+                };
                 //if(model.UserRole.ToString() == "Customer")
                 //{
 
