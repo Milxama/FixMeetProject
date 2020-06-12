@@ -28,5 +28,7 @@ namespace FixMeetWebApi.Models
         public string UserID { get; set; }
 
         // public Customer Customer { get; set; }
+
+        public virtual IList<OfferModels> Offers { get; set; }
     }
 }
