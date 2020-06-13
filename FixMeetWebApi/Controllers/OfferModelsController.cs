@@ -18,10 +18,11 @@ namespace FixMeetWebApi.Controllers
         // GET: OfferModels
         public ActionResult Index()
         {
-            //var user_id = User.Identity.GetUserId();
-            //var request_list = db.RequestModels.Where(req => req.UserID == user_id).ToList();
-            //return View(request_list);
-            return View(db.OfferModels.ToList());
+            var user_id = User.Identity.GetUserId();
+            var request_id = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault().RequestID;
+            var offerList = db.OfferModels.Where(offer => offer.RequestID == request_id).ToList();
+            return View(offerList);
+            //return View(db.OfferModels.ToList());
         }
 
         // GET: OfferModels/Details/5
@@ -57,13 +58,14 @@ namespace FixMeetWebApi.Controllers
             
             offerModels.OfferDate = DateTime.Now;
             offerModels.UserID = User.Identity.GetUserId();
-            
-            var userName = User.Identity.GetUserName();
-            var requestId = db.RequestModels.Where(r => r.UserID == "04838a08-2b8f-4dce-ad89-708dc6ebe3f8").FirstOrDefault().RequestID;
-            offerModels.RequestID = requestId;
-            var request = db.RequestModels.Where(r => r.RequestID == requestId).FirstOrDefault();
+            var user_id = User.Identity.GetUserId();
+            var request = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault();
+            var request_id = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault().RequestID;
+       
+            offerModels.RequestID = request_id;
             offerModels.Request = request;
-            
+
+            var offerList = db.OfferModels.Where(offer => offer.RequestID == request_id).ToList();
 
 
             //var userName = User.Identity.GetUserName();
