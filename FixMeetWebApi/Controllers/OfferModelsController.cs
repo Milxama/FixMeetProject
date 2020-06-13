@@ -18,6 +18,9 @@ namespace FixMeetWebApi.Controllers
         // GET: OfferModels
         public ActionResult Index()
         {
+            //var user_id = User.Identity.GetUserId();
+            //var request_list = db.RequestModels.Where(req => req.UserID == user_id).ToList();
+            //return View(request_list);
             return View(db.OfferModels.ToList());
         }
 
