@@ -52,11 +52,16 @@ namespace FixMeetWebApi.Controllers
             bookingModels.BookingDate = DateTime.Now;
 
             var user_id = User.Identity.GetUserId();
-            var request = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault();
-            var requestIsOpen = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault().IsOpen;
-           
+            var request = db.RequestModels.Where(req => req.UserID == user_id && req.IsOpen == true).FirstOrDefault();
+            var requestIsOpen = request.IsOpen;
+            var request_id = request.RequestID;
+
+
+            bookingModels.RequestID = request_id;
+
             if (ModelState.IsValid)
             {
+                
                 requestIsOpen = false;
                 db.BookingModels.Add(bookingModels);
                 db.SaveChanges();
