@@ -21,6 +21,9 @@ namespace FixMeetWebApi.Models
         public int OfferID { get; set; }
 
         //[Required]
+        //public int RequestID {get; set;}
+
+        //[Required]
         //public int CustomerId { get; set; }
 
         //[Required]

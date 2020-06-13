@@ -18,6 +18,22 @@ namespace FixMeetWebApi.Controllers
         // GET: RequestModels
         public ActionResult Index()
         {
+            var user_id = User.Identity.GetUserId();
+            var user = db.Users.Where(u => u.Id == user_id).FirstOrDefault();
+            var userRole = user.UserRole;
+            if(userRole == UserRole.Supplier)
+            {
+                var req_category_list = db.RequestModels.Where(r => r.Category == user.Category && r.IsOpen == true).ToList();
+                return View(req_category_list);
+            }
+
+            if(userRole == UserRole.Customer)
+            {
+                var request_list = db.RequestModels.Where(req => req.UserID == user_id).ToList();
+                return View(request_list);
+            }
+         
+            
             return View(db.RequestModels.ToList());
         }
 
@@ -53,6 +69,15 @@ namespace FixMeetWebApi.Controllers
             requestModels.UserID = User.Identity.GetUserId();
             requestModels.IsOpen = true;
             requestModels.Offers = null;
+            //var u = db.Users.Where(us => us.UserName == User.Identity.GetUserId()).FirstOrDefault();
+            var user_id = User.Identity.GetUserId();
+            var request_count = db.RequestModels.Where(req => req.UserID == user_id).ToList().Count();
+
+            //each customer can open only one request
+            if(request_count > 0)
+            {
+                return RedirectToAction("Index");
+            }
             if (ModelState.IsValid)
             {
                 db.RequestModels.Add(requestModels);
