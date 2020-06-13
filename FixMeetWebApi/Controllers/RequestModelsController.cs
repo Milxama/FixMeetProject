@@ -19,9 +19,22 @@ namespace FixMeetWebApi.Controllers
         public ActionResult Index()
         {
             var user_id = User.Identity.GetUserId();
-            var request_list = db.RequestModels.Where(req => req.UserID == user_id).ToList();
-            return View(request_list);
-            //return View(db.RequestModels.ToList());
+            var user = db.Users.Where(u => u.Id == user_id).FirstOrDefault();
+            var userRole = user.UserRole;
+            if(userRole == UserRole.Supplier)
+            {
+                var req_category_list = db.RequestModels.Where(r => r.Category == user.Category && r.IsOpen == true).ToList();
+                return View(req_category_list);
+            }
+
+            if(userRole == UserRole.Customer)
+            {
+                var request_list = db.RequestModels.Where(req => req.UserID == user_id).ToList();
+                return View(request_list);
+            }
+         
+            
+            return View(db.RequestModels.ToList());
         }
 
         // GET: RequestModels/Details/5

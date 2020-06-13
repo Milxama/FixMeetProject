@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using FixMeetWebApi.Models;
+using Microsoft.AspNet.Identity;
 
 namespace FixMeetWebApi.Controllers
 {
@@ -49,8 +50,14 @@ namespace FixMeetWebApi.Controllers
         public ActionResult Create([Bind(Include = "Description,OfferID")] BookingModels bookingModels)
         {
             bookingModels.BookingDate = DateTime.Now;
+
+            var user_id = User.Identity.GetUserId();
+            var request = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault();
+            var requestIsOpen = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault().IsOpen;
+           
             if (ModelState.IsValid)
             {
+                requestIsOpen = false;
                 db.BookingModels.Add(bookingModels);
                 db.SaveChanges();
                 return RedirectToAction("Index");
