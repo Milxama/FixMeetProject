@@ -9,47 +9,46 @@
     {
         @Html.AntiForgeryToken()
 
-        <ul class="nav navbar-nav navbar-right">
-            @{
+    <ul class="nav navbar-nav navbar-right">
+        @*@{
 
-                //var userMail = User.Identity.GetUserName();
-                //var user = User.Identity.Name;
-                var context = new ApplicationDbContext();
-                var username = User.Identity.Name;
-                if (!string.IsNullOrEmpty(username))
-                {
-                    var user = context.Users.SingleOrDefault(u => u.UserName == username);
-                    var userRole = user.Roles.ToString();
-                }
+            //var userMail = User.Identity.GetUserName();
+            //var user = User.Identity.Name;
+            var context = new ApplicationDbContext();
+            var username = User.Identity.GetUserId();
 
-                //if (userRole == "Customer) //if costumer
-                //{
-                //    //show this
-                //}
+            var userRole = context.Users.Where(u => u.Email == username).FirstOrDefault().UserRole.ToString();
+            //var u = context.Users.
+            //if (userRole == "Customer") //if costumer
+            //    {
+            //    //show this
+            //}
+        }*@
+
+        @*@{
+
+            if (userRole == "1") //if costumer
+            {
+                <li>@Html.ActionLink("Create Request", "Create", "RequestModels", routeValues: null, htmlAttributes: new { id = "requestLink" })</li>
+                <li>@Html.ActionLink("Create Offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = "offertLink" })</li>
+                <li>@Html.ActionLink("Create Booking", "Create", "BookingModels", routeValues: null, htmlAttributes: new { id = "bookingtLink" })</li>
+            }
+            else
+            {
+
             }
 
-            @*@{ 
+        }*@
 
-                if (userRole == 0) //if costumer
-                {
-                    //show this
-                }
-                else
-                {
+        <li>
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        <li>@Html.ActionLink("My Requests", "Index", "RequestModels", routeValues: null, htmlAttributes: new { id = "requestLink" })</li>
+        <li>@Html.ActionLink("Create Offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = "offertLink" })</li>
+        <li>@Html.ActionLink("Create Booking", "Create", "BookingModels", routeValues: null, htmlAttributes: new { id = "bookingtLink" })</li>
 
-                }
-
-                }*@
-
-            <li>
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-            </li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-            <li>@Html.ActionLink("Create Request", "Create", "RequestModels", routeValues: null, htmlAttributes: new { id = "requestLink" })</li>
-            <li>@Html.ActionLink("Create Offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = "offertLink" })</li>
-            <li>@Html.ActionLink("Create Booking", "Create", "BookingModels", routeValues: null, htmlAttributes: new { id = "bookingtLink" })</li>
-
-        </ul>
+    </ul>
     }
 
 

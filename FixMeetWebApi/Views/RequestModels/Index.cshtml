@@ -46,12 +46,20 @@
     <td>
         @Html.DisplayFor(modelItem => item.IsOpen)
     </td>
+
     <td>
+        @Html.ActionLink("Reserve an offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = item.RequestID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.RequestID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.RequestID })
+    </td>
+
+    @* default code by scalfolding *@
+    @*<td>
         @Html.ActionLink("Reserve an offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = item.RequestID }) |
         @Html.ActionLink("Edit", "Edit", new { id = item.RequestID }) |
         @Html.ActionLink("Details", "Details", new { id = item.RequestID }) |
         @Html.ActionLink("Delete", "Delete", new { id = item.RequestID })
-    </td>
+    </td>*@
 </tr>
 }
 
