@@ -5,38 +5,51 @@
 
 @if (Request.IsAuthenticated)
 {
+
+    var db = new ApplicationDbContext();
+    var user_id = User.Identity.GetUserId();
+    var user_role = db.Users.Where(u => u.Id == user_id).FirstOrDefault().UserRole;
+    var user_category = db.Users.Where(u => u.Id == user_id).FirstOrDefault().Category;
+    var user_name = db.Users.Where(us => us.Id == user_id).FirstOrDefault().FirstName;
+
+    //var user_role = user.UserRole.;
+
+
+
+    //var userMail = User.Identity.GetUserName();
+    //var user = User.Identity.Name;
+    //var context = new ApplicationDbContext();
+    //var username = User.Identity.GetUserId();
+
+    //var userRole = context.Users.Where(u => u.Email == username).FirstOrDefault().UserRole.ToString();
+    //var u = context.Users.
+    //if (userRole == "Customer") //if costumer
+    //    {
+    //    //show this
+    //}
+
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-        @Html.AntiForgeryToken()
+             @Html.AntiForgeryToken()
+
 
     <ul class="nav navbar-nav navbar-right">
-        @{
-            var db = new ApplicationDbContext();
-            var user_id = User.Identity.GetUserId();
-            var user = db.Users.Where(u => u.Id == user_id).FirstOrDefault().UserRole;
-
-            //var user_role = user.UserRole.;
 
 
 
-            //var userMail = User.Identity.GetUserName();
-            //var user = User.Identity.Name;
-            //var context = new ApplicationDbContext();
-            //var username = User.Identity.GetUserId();
-
-            //var userRole = context.Users.Where(u => u.Email == username).FirstOrDefault().UserRole.ToString();
-            //var u = context.Users.
-            //if (userRole == "Customer") //if costumer
-            //    {
-            //    //show this
-            //}
+        @{ if (user_role == UserRole.Customer)
+            {
+                <li>
+                    @Html.ActionLink("Hello " + user_name + "!" + "You have a customer permissions", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                </li>
+            }
+            if (user_role == UserRole.Supplier)
+            {
+                <li>
+                    @Html.ActionLink("Hello " + user_name + "!" + "Your specialization is: " + user_category, "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                </li>
+            }
         }
-
-
-
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
         @*<li>@Html.ActionLink("My Requests", "Index", "RequestModels", routeValues: null, htmlAttributes: new { id = "requestLink" })</li>
         <li>@Html.ActionLink("My Offers", "Index", "OfferModels", routeValues: null, htmlAttributes: new { id = "offertLink" })</li>
@@ -45,21 +58,24 @@
 
         @{
 
-            if (user == UserRole.Customer) //if costumer
+            if (user_role == UserRole.Customer) //if costumer
             {
                 <li>@Html.ActionLink("My Requests", "Index", "RequestModels", routeValues: null, htmlAttributes: new { id = "requestLink" })</li>
                 <li>@Html.ActionLink("My Offers", "Index", "OfferModels", routeValues: null, htmlAttributes: new { id = "offertLink" })</li>
                 <li>@Html.ActionLink("My Bookings", "Index", "BookingModels", routeValues: null, htmlAttributes: new { id = "bookingtLink" })</li>
             }
-            if (user == UserRole.Supplier)
+            if (user_role == UserRole.Supplier)
             {
-                <li>@Html.ActionLink("My Requests", "Index", "RequestModels", routeValues: null, htmlAttributes: new { id = "requestLink" })</li>
+
+                <li>@Html.ActionLink("List of Requests", "Index", "RequestModels", routeValues: null, htmlAttributes: new { id = "requestLink" })</li>
                 <li>@Html.ActionLink("My Offers", "Index", "OfferModels", routeValues: null, htmlAttributes: new { id = "offertLink" })</li>
                 <li>@Html.ActionLink("My Bookings", "Index", "BookingModels", routeValues: null, htmlAttributes: new { id = "bookingtLink" })</li>
             }
 
         }
+
     </ul>
+
     }
 
 

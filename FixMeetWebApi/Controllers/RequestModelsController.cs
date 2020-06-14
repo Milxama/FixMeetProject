@@ -71,7 +71,11 @@ namespace FixMeetWebApi.Controllers
             requestModels.Offers = null;
             //var u = db.Users.Where(us => us.UserName == User.Identity.GetUserId()).FirstOrDefault();
             var user_id = User.Identity.GetUserId();
+            var user = db.Users.Where(u => u.Id == user_id).FirstOrDefault();
+            requestModels.CustomerFirstName = user.FirstName;
+            requestModels.CustomerLastName = user.LastName;
             var request_count = db.RequestModels.Where(req => req.UserID == user_id && req.IsOpen == true).ToList().Count();
+
 
             //each customer can open only one request
             if(request_count > 0)

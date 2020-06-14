@@ -59,21 +59,25 @@ namespace FixMeetWebApi.Controllers
             offerModels.OfferDate = DateTime.Now;
             offerModels.UserID = User.Identity.GetUserId();
             var user_id = User.Identity.GetUserId();
-            var request = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault();
-            var request_id = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault().RequestID;
-       
-            offerModels.RequestID = request_id;
-            offerModels.Request = request;
+            var user = db.Users.Where(u => u.Id == user_id).FirstOrDefault();
+            var user_role = user.UserRole;
 
-            var offerList = db.OfferModels.Where(offer => offer.RequestID == request_id).ToList();
+          
+            //var request = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault();
+            //var request_id = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault().RequestID;
+
+            //offerModels.RequestID = request_id;
+            //offerModels.Request = request;
+
+            //var offerList = db.OfferModels.Where(offer => offer.RequestID == request_id).ToList();
 
 
             //var userName = User.Identity.GetUserName();
             //var requestId = db.Users.Where(u => u.UserName == userName).FirstOrDefault().;
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && user_role == UserRole.Supplier)
             {
                 db.OfferModels.Add(offerModels);
-                request.Offers.Add(offerModels);
+                //request.Offers.Add(offerModels);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

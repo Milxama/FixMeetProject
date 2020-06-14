@@ -25,6 +25,12 @@
             @Html.DisplayNameFor(model => model.RequestID)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.CustomerFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerLastName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.RequestDate)
         </th>
         <th>
@@ -32,9 +38,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserID)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.IsOpen)
@@ -48,7 +51,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.RequestID)
                 </td>
-
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerFirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerLastName)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.RequestDate)
                 </td>
@@ -59,21 +67,22 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.UserID)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.IsOpen)
                 </td>
 
                 <td>
 
-                    @if (db.RequestModels.Where(req => req.IsOpen == true).FirstOrDefault().IsOpen == true)
+                    @*@if (db.RequestModels.Where(req => req.IsOpen == true).FirstOrDefault().IsOpen == true)
+                    {
+                        @Html.ActionLink("Reserve an offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = item.RequestID })
+                    }*@
+
+                    @if (user_role == UserRole.Supplier)
                     {
                         @Html.ActionLink("Reserve an offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = item.RequestID })
                     }
 
-
-                     @Html.ActionLink("Reserve an offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = item.RequestID }) |
+                    @*@Html.ActionLink("Reserve an offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = item.RequestID }) |*@
                     @Html.ActionLink("Details", "Details", new { id = item.RequestID }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.RequestID })
                 </td>
@@ -89,6 +98,11 @@
         }
 
     </table>
+
+<script>
+
+    
+</script>
 
 @*@if (user_role == UserRole.Customer) //if costumer
 {
