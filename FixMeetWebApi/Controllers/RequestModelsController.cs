@@ -65,15 +65,11 @@ namespace FixMeetWebApi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Category,Description")] RequestModels requestModels)
         {
-            requestModels.RequestDate = DateTime.Now;
-            requestModels.UserID = User.Identity.GetUserId();
-            requestModels.IsOpen = true;
-            requestModels.Offers = null;
-            //var u = db.Users.Where(us => us.UserName == User.Identity.GetUserId()).FirstOrDefault();
+            
+           
             var user_id = User.Identity.GetUserId();
             var user = db.Users.Where(u => u.Id == user_id).FirstOrDefault();
-            requestModels.CustomerFirstName = user.FirstName;
-            requestModels.CustomerLastName = user.LastName;
+
             var request_count = db.RequestModels.Where(req => req.UserID == user_id && req.IsOpen == true).ToList().Count();
 
 
@@ -82,8 +78,14 @@ namespace FixMeetWebApi.Controllers
             {
                 return RedirectToAction("Index");
             }
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && user.UserRole == UserRole.Customer)
             {
+                requestModels.RequestDate = DateTime.Now;
+                requestModels.UserID = User.Identity.GetUserId();
+                requestModels.IsOpen = true;
+                requestModels.Offers = null;
+                requestModels.CustomerFirstName = user.FirstName;
+                requestModels.CustomerLastName = user.LastName;
                 db.RequestModels.Add(requestModels);
                 db.SaveChanges();
                 return RedirectToAction("Index");

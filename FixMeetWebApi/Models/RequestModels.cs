@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -28,8 +29,9 @@ namespace FixMeetWebApi.Models
         public string UserID { get; set; }
 
         // public Customer Customer { get; set; }
-
+        [DisplayName("First Name")]
         public string CustomerFirstName { get; set; }
+        [DisplayName("Last Name")]
         public string CustomerLastName { get; set; }
 
         public virtual IList<OfferModels> Offers { get; set; }
