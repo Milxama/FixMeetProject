@@ -85,7 +85,7 @@ namespace FixMeetWebApi.Controllers
                 bookingModels.SuppFirstName = offer.SupplierFirstName;
                 bookingModels.SuppLastName = offer.SupplierLastName;
                 bookingModels.CustFirstName = request.CustomerFirstName;
-                bookingModels.CustLastName = request.CustomerFirstName;
+                bookingModels.CustLastName = request.CustomerLastName;
                 request.IsOpen = false;
 
                 db.BookingModels.Add(bookingModels);

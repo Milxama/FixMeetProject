@@ -16,10 +16,13 @@
     var offer_count = 0;
     if (user_role == UserRole.Customer)
     {
-        var request = db.RequestModels.Where(req => req.UserID == user_id && req.IsOpen == true).FirstOrDefault();
-        var requestId = request.RequestID;
-        var offerList = db.OfferModels.Where(off => off.RequestID == requestId).ToList();
-        offer_count = offerList.Count();
+        var request = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault();
+        if (request.IsOpen == true)
+        {
+            var requestId = request.RequestID;
+            var offerList = db.OfferModels.Where(off => off.RequestID == requestId).ToList();
+            offer_count = offerList.Count();
+        }
     }
 
 }
