@@ -61,24 +61,33 @@ namespace FixMeetWebApi.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Description")] BookingModels bookingModels)
+        public ActionResult Create([Bind(Include = "Description")] BookingModels bookingModels, int offerId)
         {
-            bookingModels.BookingDate = DateTime.Now;
 
+            var offer = db.OfferModels.Where(off => off.OfferID == offerId).FirstOrDefault();
             var user_id = User.Identity.GetUserId();
-            var request = db.RequestModels.Where(req => req.UserID == user_id && req.IsOpen == true).FirstOrDefault();
+            var request = db.RequestModels.Where(req => req.RequestID == offer.RequestID).FirstOrDefault();
             var requestIsOpen = request.IsOpen;
             var request_id = request.RequestID;
 
+            
+           
 
-            bookingModels.RequestID = request_id;
-            db.RequestModels.Where(r => r.UserID == user_id && r.IsOpen == true).FirstOrDefault().IsOpen = false;
+
+            
+            
 
 
             if (ModelState.IsValid)
             {
-                
-                
+                bookingModels.BookingDate = DateTime.Now;
+                bookingModels.RequestID = offer.RequestID;
+                bookingModels.SuppFirstName = offer.SupplierFirstName;
+                bookingModels.SuppLastName = offer.SupplierLastName;
+                bookingModels.CustFirstName = request.CustomerFirstName;
+                bookingModels.CustLastName = request.CustomerFirstName;
+                request.IsOpen = false;
+
                 db.BookingModels.Add(bookingModels);
                 db.SaveChanges();
                 return RedirectToAction("Index");
