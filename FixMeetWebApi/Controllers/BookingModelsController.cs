@@ -18,6 +18,20 @@ namespace FixMeetWebApi.Controllers
         // GET: BookingModels
         public ActionResult Index()
         {
+            //var user_id = User.Identity.GetUserId();
+            //var user = db.Users.Where(u => u.Id == user_id).FirstOrDefault();
+            //var userRole = user.UserRole;
+            ////if (userRole == UserRole.Supplier)
+            ////{
+            ////    var req_category_list = db.RequestModels.Where(r => r.Category == user.Category && r.IsOpen == true).ToList();
+            ////    return View(req_category_list);
+            ////}
+
+            //if (userRole == UserRole.Customer)
+            //{
+            //    var booking_list = db.BookingModels.Where(req => req. == user_id).ToList();
+            //    return View(request_list);
+            //}
             return View(db.BookingModels.ToList());
         }
 

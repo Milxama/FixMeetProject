@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -26,6 +28,10 @@ namespace FixMeetWebApi.Models
         public Category Category { get; set; }
 
         public string Radius { get; set; }
+
+      //  public virtual IList<BookingModels> Bookings { get; set; }
+       // public virtual IList<OfferModels> Offers { get; set; }
+       // public virtual IList<RequestModels> Requests { get; set; }
 
 
 

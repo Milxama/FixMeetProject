@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Owin.Security;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -22,6 +23,8 @@ namespace FixMeetWebApi.Models
 
         [Required]
         public int RequestID { get; set; }
+
+       // virtual public ApplicationUser Customer { get; set; }
 
         //[Required]
         //public int CustomerId { get; set; }
