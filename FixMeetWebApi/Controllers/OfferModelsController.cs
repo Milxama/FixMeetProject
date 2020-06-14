@@ -59,6 +59,9 @@ namespace FixMeetWebApi.Controllers
             offerModels.OfferDate = DateTime.Now;
             offerModels.UserID = User.Identity.GetUserId();
             var user_id = User.Identity.GetUserId();
+            var user = db.Users.Where(u => u.UserName == user_id).FirstOrDefault();
+            var user_role = user.UserRole; 
+            
             var request = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault();
             var request_id = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault().RequestID;
        
@@ -70,7 +73,7 @@ namespace FixMeetWebApi.Controllers
 
             //var userName = User.Identity.GetUserName();
             //var requestId = db.Users.Where(u => u.UserName == userName).FirstOrDefault().;
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && user_role == UserRole.Supplier)
             {
                 db.OfferModels.Add(offerModels);
                 request.Offers.Add(offerModels);
