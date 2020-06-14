@@ -61,7 +61,7 @@
             if (user_role == UserRole.Customer) //if costumer
             {
                 <li>@Html.ActionLink("My Requests", "Index", "RequestModels", routeValues: null, htmlAttributes: new { id = "requestLink" })</li>
-                <li>@Html.ActionLink("My Offers", "Index", "OfferModels", routeValues: null, htmlAttributes: new { id = "offertLink" })</li>
+                //<li>@Html.ActionLink("My Offers", "Index", "OfferModels", routeValues: null, htmlAttributes: new { id = "offertLink" })</li>
                 <li>@Html.ActionLink("My Bookings", "Index", "BookingModels", routeValues: null, htmlAttributes: new { id = "bookingtLink" })</li>
             }
             if (user_role == UserRole.Supplier)

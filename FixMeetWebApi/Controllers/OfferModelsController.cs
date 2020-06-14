@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.HtmlControls;
 using FixMeetWebApi.Models;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 
 namespace FixMeetWebApi.Controllers
@@ -23,17 +24,18 @@ namespace FixMeetWebApi.Controllers
             var userRole = db.Users.Where(u => u.Id == user_id).FirstOrDefault().UserRole;
             //var request_id = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault().RequestID;
             //var offerList = db.OfferModels.Where(offer => offer.RequestID == request_id).ToList();
-           
+            
 
             if (userRole == UserRole.Supplier)
             {
-                var offerList = db.OfferModels.Where(offer => offer.UserID == user_id).ToList();
-                return View(offerList);
+                var offerList1 = db.OfferModels.Where(offer => offer.UserID == user_id).ToList();
+                return View(offerList1);
             }
 
             if (userRole == UserRole.Customer)
             {
-                var requestId = db.RequestModels.Where(req => req.UserID == user_id && req.IsOpen == true).FirstOrDefault().RequestID;
+                var request = db.RequestModels.Where(req => req.UserID == user_id && req.IsOpen == true).FirstOrDefault();
+                var requestId = request.RequestID;
                 var offerList = db.OfferModels.Where(off => off.RequestID == requestId).ToList();
                 return View(offerList);
             }
