@@ -59,7 +59,7 @@ namespace FixMeetWebApi.Controllers
             offerModels.OfferDate = DateTime.Now;
             offerModels.UserID = User.Identity.GetUserId();
             var user_id = User.Identity.GetUserId();
-            var user = db.Users.Where(u => u.UserName == user_id).FirstOrDefault();
+            var user = db.Users.Where(u => u.Id == user_id).FirstOrDefault();
             var user_role = user.UserRole; 
             
             var request = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault();
