@@ -47,7 +47,7 @@ namespace FixMeetWebApi.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Description,OfferID")] BookingModels bookingModels)
+        public ActionResult Create([Bind(Include = "Description")] BookingModels bookingModels)
         {
             bookingModels.BookingDate = DateTime.Now;
 
@@ -58,11 +58,13 @@ namespace FixMeetWebApi.Controllers
 
 
             bookingModels.RequestID = request_id;
+            db.RequestModels.Where(r => r.UserID == user_id && r.IsOpen == true).FirstOrDefault().IsOpen = false;
+
 
             if (ModelState.IsValid)
             {
                 
-                requestIsOpen = false;
+                
                 db.BookingModels.Add(bookingModels);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -91,7 +93,7 @@ namespace FixMeetWebApi.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BookingID,BookingDate,Description,OfferID")] BookingModels bookingModels)
+        public ActionResult Edit([Bind(Include = "BookingID,BookingDate,Description")] BookingModels bookingModels)
         {
             if (ModelState.IsValid)
             {

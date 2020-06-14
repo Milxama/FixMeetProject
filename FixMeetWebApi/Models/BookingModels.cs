@@ -28,5 +28,7 @@ namespace FixMeetWebApi.Models
 
         //[Required]
         //public int SupplierId { get; set; }
+
+
     }
 }
