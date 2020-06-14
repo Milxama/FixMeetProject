@@ -20,11 +20,26 @@ namespace FixMeetWebApi.Controllers
         public ActionResult Index()
         {
             var user_id = User.Identity.GetUserId();
+            var userRole = db.Users.Where(u => u.Id == user_id).FirstOrDefault().UserRole;
             //var request_id = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault().RequestID;
             //var offerList = db.OfferModels.Where(offer => offer.RequestID == request_id).ToList();
-            var offerList = db.OfferModels.Where(u => u.UserID == user_id).ToList();
-            return View(offerList);
-            //return View(db.OfferModels.ToList());
+           
+
+            if (userRole == UserRole.Supplier)
+            {
+                var offerList = db.OfferModels.Where(offer => offer.UserID == user_id).ToList();
+                return View(offerList);
+            }
+
+            if (userRole == UserRole.Customer)
+            {
+                var requestId = db.RequestModels.Where(req => req.UserID == user_id && req.IsOpen == true).FirstOrDefault().RequestID;
+                var offerList = db.OfferModels.Where(off => off.RequestID == requestId).ToList();
+                return View(offerList);
+            }
+          
+  
+            return View(db.OfferModels.ToList());
         }
 
         // GET: OfferModels/Details/5
