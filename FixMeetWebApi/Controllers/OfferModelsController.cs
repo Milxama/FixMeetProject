@@ -18,31 +18,30 @@ namespace FixMeetWebApi.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: OfferModels
-        public ActionResult Index(int requestId)
+        public ActionResult Index()
         {
             var user_id = User.Identity.GetUserId();
+            var user = db.Users.Where(u => u.Id == user_id).FirstOrDefault();
+           
             var userRole = db.Users.Where(u => u.Id == user_id).FirstOrDefault().UserRole;
-            //var request_id = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault().RequestID;
-            //var offerList = db.OfferModels.Where(offer => offer.RequestID == request_id).ToList();
-
+            
 
             if (userRole == UserRole.Supplier)
             {
-                var offerList1 = db.OfferModels.Where(offer => offer.UserID == user_id).ToList();
-                return View(offerList1);
-            }
-
-            if (userRole == UserRole.Customer)
-            {
-                var r = db.RequestModels.Where(req => req.UserID == user_id && req.RequestID == requestId).SingleOrDefault();
-                var r_isOpen = r.IsOpen;
-                //var request = db.RequestModels.Where(req => req.UserID == user_id && req.IsOpen == true).FirstOrDefault();
-                //var request_Id = request.RequestID;
-                var offerList = db.OfferModels.Where(off => off.RequestID == requestId).ToList();
+                var offer = db.OfferModels.Where(off => off.UserID == user_id).ToList();
+                var request_id = offer.LastOrDefault().RequestID;
+                var offerList = offer.Where(o => o.RequestID == request_id).ToList();
                 return View(offerList);
             }
-          
-  
+
+            //if (userRole == UserRole.Customer)
+            //{
+            //    var offer = db.OfferModels.Where(off => off.RequestID == requestId).ToList();
+            //    return View(offer);
+
+            //}
+
+
             return View(db.OfferModels.ToList());
         }
 
@@ -74,7 +73,7 @@ namespace FixMeetWebApi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Description")] OfferModels offerModels, int requestId)
         {
-            var rwq = db.RequestModels.Where(o => o.RequestID == requestId).FirstOrDefault().RequestID;
+            //var rwq = db.RequestModels.Where(o => o.RequestID == requestId).FirstOrDefault().RequestID;
             
            
             var user_id = User.Identity.GetUserId();
@@ -82,8 +81,8 @@ namespace FixMeetWebApi.Controllers
             var user_role = user.UserRole;
 
             var req = db.RequestModels.Where(r => r.RequestID == requestId).FirstOrDefault();
-            offerModels.RequestID = requestId;
-            offerModels.Request = req;
+            //offerModels.RequestID = requestId;
+            //offerModels.Request = req;
             //var request_id = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault().RequestID;
 
             //offerModels.RequestID = request_id;
@@ -95,16 +94,16 @@ namespace FixMeetWebApi.Controllers
             //var userName = User.Identity.GetUserName();
             //var requestId = db.Users.Where(u => u.UserName == userName).FirstOrDefault().;
             // && user_role == UserRole.Supplier
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && user_role == UserRole.Supplier)
             {
                 offerModels.OfferDate = DateTime.Now;
-                offerModels.UserID = User.Identity.GetUserId();
+                offerModels.UserID = user_id;
                 offerModels.SupplierFirstName = user.FirstName;
                 offerModels.SupplierLastName = user.LastName;
                 offerModels.RequestID = requestId;
                 offerModels.Request = req;
                 db.OfferModels.Add(offerModels);
-                //req.Offers.Add(offerModels);
+                req.Offers.Add(offerModels);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

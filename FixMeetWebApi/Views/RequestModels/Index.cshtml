@@ -13,21 +13,24 @@
     var db = new ApplicationDbContext();
     var user_id = User.Identity.GetUserId();
     var user_role = db.Users.Where(u => u.Id == user_id).FirstOrDefault().UserRole;
-    var offer_count = 0;
+    //var offer_count = 0;
 
-        var request = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault();
-        if (request.IsOpen == true)
-        {
-            var requestId = request.RequestID;
-            var offerList = db.OfferModels.Where(off => off.RequestID == requestId).ToList();
-            offer_count = offerList.Count();
-        }
+    var request = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault();
+    //if (request.IsOpen == true)
+    //{
+    //    var requestId = request.RequestID;
+    //    var offerList = db.OfferModels.Where(off => off.RequestID == requestId).ToList();
+    //    offer_count = offerList.Count();
+    //}
 
-    
+
 
 }
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @if (user_role == UserRole.Customer)
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
 </p>
 
 <table class="table">
@@ -96,7 +99,7 @@
                     }
                     @if (user_role == UserRole.Customer)
                     {
-                       
+
                         @Html.ActionLink("Offers to this Request", "Index", "OfferModels", new { item.RequestID }, null)
                     }
                     @*@Html.ActionLink("Reserve an offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = item.RequestID }) |*@
