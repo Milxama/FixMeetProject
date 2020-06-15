@@ -6,7 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.HtmlControls;
 using FixMeetWebApi.Models;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 
 namespace FixMeetWebApi.Controllers
@@ -19,10 +21,28 @@ namespace FixMeetWebApi.Controllers
         public ActionResult Index()
         {
             var user_id = User.Identity.GetUserId();
-            var request_id = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault().RequestID;
-            var offerList = db.OfferModels.Where(offer => offer.RequestID == request_id).ToList();
-            return View(offerList);
-            //return View(db.OfferModels.ToList());
+            var user = db.Users.Where(u => u.Id == user_id).FirstOrDefault();
+           
+            var userRole = db.Users.Where(u => u.Id == user_id).FirstOrDefault().UserRole;
+            
+
+            if (userRole == UserRole.Supplier)
+            {
+                var offer = db.OfferModels.Where(off => off.UserID == user_id).ToList();
+                var request_id = offer.LastOrDefault().RequestID;
+                var offerList = offer.Where(o => o.RequestID == request_id).ToList();
+                return View(offerList);
+            }
+
+            //if (userRole == UserRole.Customer)
+            //{
+            //    var offer = db.OfferModels.Where(off => off.RequestID == requestId).ToList();
+            //    return View(offer);
+
+            //}
+
+
+            return View(db.OfferModels.ToList());
         }
 
         // GET: OfferModels/Details/5
@@ -51,19 +71,18 @@ namespace FixMeetWebApi.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Description")] OfferModels offerModels)
+        public ActionResult Create([Bind(Include = "Description")] OfferModels offerModels, int requestId)
         {
+            //var rwq = db.RequestModels.Where(o => o.RequestID == requestId).FirstOrDefault().RequestID;
+            
            
-            
-            
-            offerModels.OfferDate = DateTime.Now;
-            offerModels.UserID = User.Identity.GetUserId();
             var user_id = User.Identity.GetUserId();
             var user = db.Users.Where(u => u.Id == user_id).FirstOrDefault();
             var user_role = user.UserRole;
 
-          
-            //var request = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault();
+            var req = db.RequestModels.Where(r => r.RequestID == requestId).FirstOrDefault();
+            //offerModels.RequestID = requestId;
+            //offerModels.Request = req;
             //var request_id = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault().RequestID;
 
             //offerModels.RequestID = request_id;
@@ -74,10 +93,17 @@ namespace FixMeetWebApi.Controllers
 
             //var userName = User.Identity.GetUserName();
             //var requestId = db.Users.Where(u => u.UserName == userName).FirstOrDefault().;
+            // && user_role == UserRole.Supplier
             if (ModelState.IsValid && user_role == UserRole.Supplier)
             {
+                offerModels.OfferDate = DateTime.Now;
+                offerModels.UserID = user_id;
+                offerModels.SupplierFirstName = user.FirstName;
+                offerModels.SupplierLastName = user.LastName;
+                offerModels.RequestID = requestId;
+                offerModels.Request = req;
                 db.OfferModels.Add(offerModels);
-                //request.Offers.Add(offerModels);
+                req.Offers.Add(offerModels);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

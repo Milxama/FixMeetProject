@@ -1,18 +1,38 @@
 ﻿@model IEnumerable<FixMeetWebApi.Models.OfferModels>
-
+@using Microsoft.AspNet.Identity
+@using System.Data.Entity;
+@using System.Web.Mvc;
+@using FixMeetWebApi.Models;
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
+@{
+    var db = new ApplicationDbContext();
+    var user_id = User.Identity.GetUserId();
+    var user_role = db.Users.Where(u => u.Id == user_id).FirstOrDefault().UserRole;
+    var request = db.RequestModels.Where(req => req.UserID == user_id && req.IsOpen == true).SingleOrDefault();
 
+    //var req = db.Offer
+
+}
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @if (user_role == UserRole.Supplier)
+    {
+      @Html.ActionLink("Create New", "Create")
+    }
 </p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.OfferID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SupplierFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SupplierLastName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.OfferDate)
@@ -21,38 +41,43 @@
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserID)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.RequestID)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.OfferID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OfferDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RequestID)
-        </td>
-        <td>
-            @Html.ActionLink("Booking", "Create", "BookingModels", routeValues: null, htmlAttributes: new { id = item.OfferID }) |
-            @*@Html.ActionLink("Edit", "Edit", new { id = item.OfferID }) |*@
-            @Html.ActionLink("Details", "Details", new { id = item.OfferID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.OfferID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfferID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupplierFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupplierLastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfferDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestID)
+            </td>
+            <td>
+                @if (user_role == UserRole.Customer)
+                {
+                    @Html.ActionLink("Booking", "Create", "BookingModels", new { item.OfferID }, null) 
+                }
+
+                 @*@Html.ActionLink("Edit", "Edit", new { id = item.OfferID }) |*@
+                @Html.ActionLink("Details", "Details", new { id = item.OfferID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.OfferID })
+            </td>
+        </tr>
+    }
 
 </table>
