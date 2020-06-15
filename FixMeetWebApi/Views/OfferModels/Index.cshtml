@@ -12,6 +12,9 @@
     var db = new ApplicationDbContext();
     var user_id = User.Identity.GetUserId();
     var user_role = db.Users.Where(u => u.Id == user_id).FirstOrDefault().UserRole;
+    var request = db.RequestModels.Where(req => req.UserID == user_id && req.IsOpen == true).SingleOrDefault();
+    
+    //var req = db.Offer
   
 }
 <p>

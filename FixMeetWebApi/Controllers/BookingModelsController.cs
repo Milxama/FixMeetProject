@@ -68,19 +68,14 @@ namespace FixMeetWebApi.Controllers
             var user_id = User.Identity.GetUserId();
             var request = db.RequestModels.Where(req => req.RequestID == offer.RequestID).FirstOrDefault();
             var requestIsOpen = request.IsOpen;
-            var request_id = request.RequestID;
+            var request_id = offer.RequestID;
 
             
-           
-
-
-            
-            
-
 
             if (ModelState.IsValid)
             {
                 bookingModels.BookingDate = DateTime.Now;
+                bookingModels.OfferID = offerId;
                 bookingModels.RequestID = offer.RequestID;
                 bookingModels.SuppFirstName = offer.SupplierFirstName;
                 bookingModels.SuppLastName = offer.SupplierLastName;

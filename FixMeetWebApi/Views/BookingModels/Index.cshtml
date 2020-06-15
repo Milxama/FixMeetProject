@@ -1,11 +1,19 @@
 ﻿@model IEnumerable<FixMeetWebApi.Models.BookingModels>
-
+@using Microsoft.AspNet.Identity
+@using System.Data.Entity;
+@using System.Web.Mvc;
+@using FixMeetWebApi.Models;
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
-
+@{
+    var db = new ApplicationDbContext();
+    var user_id = User.Identity.GetUserId();
+    var user_role = db.Users.Where(u => u.Id == user_id).FirstOrDefault().UserRole;
+    //var request = db.RequestModels.Where(req => req.UserID == user_id).
+}
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -37,38 +45,39 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.BookingDate)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Description)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CustFirstName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CustLastName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.SuppFirstName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.SuppLastName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.OfferID)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.RequestID)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.BookingID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.BookingID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.BookingID })
-    </td>
-</tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustLastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SuppFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SuppLastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfferID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestID)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.BookingID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.BookingID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.BookingID })
+            </td>
+        </tr>
+    }
 
 </table>

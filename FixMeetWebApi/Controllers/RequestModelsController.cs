@@ -74,7 +74,7 @@ namespace FixMeetWebApi.Controllers
 
 
             //each customer can open only one request
-            if(request_count > 0)
+            if (request_count > 0)
             {
                 return RedirectToAction("Index");
             }

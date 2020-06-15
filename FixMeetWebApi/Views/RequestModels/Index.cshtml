@@ -14,8 +14,7 @@
     var user_id = User.Identity.GetUserId();
     var user_role = db.Users.Where(u => u.Id == user_id).FirstOrDefault().UserRole;
     var offer_count = 0;
-    if (user_role == UserRole.Customer)
-    {
+
         var request = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault();
         if (request.IsOpen == true)
         {
@@ -23,7 +22,8 @@
             var offerList = db.OfferModels.Where(off => off.RequestID == requestId).ToList();
             offer_count = offerList.Count();
         }
-    }
+
+    
 
 }
 <p>
@@ -94,8 +94,9 @@
                         @Html.ActionLink("Reserve an offer", "Create", "OfferModels", new { item.RequestID }, null)
 
                     }
-                    @if (user_role == UserRole.Customer && offer_count > 0 )
+                    @if (user_role == UserRole.Customer)
                     {
+                       
                         @Html.ActionLink("Offers to this Request", "Index", "OfferModels", new { item.RequestID }, null)
                     }
                     @*@Html.ActionLink("Reserve an offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = item.RequestID }) |*@
