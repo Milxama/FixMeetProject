@@ -18,21 +18,35 @@ namespace FixMeetWebApi.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: OfferModels
-        public ActionResult Index(int requestId)
+        public ActionResult Index()
+        {
+            var user_id = User.Identity.GetUserId();
+            var user = db.Users.Where(u => u.Id == user_id).FirstOrDefault();
+
+            var userRole = db.Users.Where(u => u.Id == user_id).FirstOrDefault().UserRole;
+
+
+            if (userRole == UserRole.Supplier)
+            {
+                var offer = db.OfferModels.Where(off => off.UserID == user_id).ToList();
+              //  var request_id = offer.LastOrDefault().RequestID;
+               // var offerList = offer.Where(o => o.RequestID == request_id).ToList();
+                return View(offer);
+            }
+            return View(db.OfferModels.ToList());
+
+        }
+
+        // GET: OfferModels
+        [HttpPost]
+        public ActionResult Index(int? requestId)
         {
             var user_id = User.Identity.GetUserId();
             var user = db.Users.Where(u => u.Id == user_id).FirstOrDefault();
            
             var userRole = db.Users.Where(u => u.Id == user_id).FirstOrDefault().UserRole;
-            
 
-            //if (userRole == UserRole.Supplier)
-            //{
-            //    var offer = db.OfferModels.Where(off => off.UserID == user_id).ToList();
-            //    var request_id = offer.LastOrDefault().RequestID;
-            //    var offerList = offer.Where(o => o.RequestID == request_id).ToList();
-            //    return View(offerList);
-            //}
+
 
             if (userRole == UserRole.Customer)
             {
