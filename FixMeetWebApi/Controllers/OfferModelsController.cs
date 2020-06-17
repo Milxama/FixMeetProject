@@ -18,7 +18,7 @@ namespace FixMeetWebApi.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: OfferModels
-        public ActionResult Index()
+        public ActionResult Index(int requestId)
         {
             var user_id = User.Identity.GetUserId();
             var user = db.Users.Where(u => u.Id == user_id).FirstOrDefault();
@@ -34,12 +34,12 @@ namespace FixMeetWebApi.Controllers
                 return View(offerList);
             }
 
-            //if (userRole == UserRole.Customer)
-            //{
-            //    var offer = db.OfferModels.Where(off => off.RequestID == requestId).ToList();
-            //    return View(offer);
+            if (userRole == UserRole.Customer)
+            {
+                var offer = db.OfferModels.Where(off => off.RequestID == requestId).ToList();
+                return View(offer);
 
-            //}
+            }
 
 
             return View(db.OfferModels.ToList());
