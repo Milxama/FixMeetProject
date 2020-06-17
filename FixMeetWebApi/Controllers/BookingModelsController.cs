@@ -22,26 +22,19 @@ namespace FixMeetWebApi.Controllers
             var user = db.Users.Where(u => u.Id == user_id).FirstOrDefault();
             var userRole = user.UserRole;
             var email = user.Email;
-            
 
-            if (userRole == UserRole.Supplier)
-            {
-                var off_list = db.OfferModels.Where(r => r.UserID == user_id).FirstOrDefault();
-                var o_first = off_list.SupplierFirstName;
-                var o_second = off_list.SupplierLastName;
-                var booking_list = db.BookingModels.Where(booking => booking.SuppFirstName == o_first && booking.SuppLastName == o_second).ToList();
-                return View(booking_list);
-            }
+            //var offer = db.OfferModels.Where(off => off.OfferID == offerId).FirstOrDefault();
+            //var sup_first_name = offer.SupplierFirstName;
+            //var sup_last_name = offer.SupplierLastName;
 
-            if (userRole == UserRole.Customer)
-            {
-                var req_category_list = db.RequestModels.Where(r => r.UserID == user_id && r.IsOpen == true).FirstOrDefault();
-                var r_first = req_category_list.CustomerFirstName;
-                var r_second = req_category_list.CustomerLastName;
-                var r_id = req_category_list.RequestID;
-                var booking_list = db.BookingModels.Where(booking => booking.CustFirstName == r_first && booking.CustLastName == r_second).ToList();
-                return View(booking_list);
-            }
+            //var request = db.RequestModels.Where(r => r.UserID == user_id && r.IsOpen == true).FirstOrDefault();
+            //var cust_first_name = request.CustomerFirstName;
+            //var cust_last_name = request.CustomerLastName;
+
+            //var booking_list = db.BookingModels.Where(booking => booking.CustFirstName == cust_first_name && booking.CustLastName == cust_last_name).ToList();
+
+           
+           
             return View(db.BookingModels.ToList());
         }
 
