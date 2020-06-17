@@ -26,13 +26,13 @@ namespace FixMeetWebApi.Controllers
             var userRole = db.Users.Where(u => u.Id == user_id).FirstOrDefault().UserRole;
             
 
-            if (userRole == UserRole.Supplier)
-            {
-                var offer = db.OfferModels.Where(off => off.UserID == user_id).ToList();
-                var request_id = offer.LastOrDefault().RequestID;
-                var offerList = offer.Where(o => o.RequestID == request_id).ToList();
-                return View(offerList);
-            }
+            //if (userRole == UserRole.Supplier)
+            //{
+            //    var offer = db.OfferModels.Where(off => off.UserID == user_id).ToList();
+            //    var request_id = offer.LastOrDefault().RequestID;
+            //    var offerList = offer.Where(o => o.RequestID == request_id).ToList();
+            //    return View(offerList);
+            //}
 
             if (userRole == UserRole.Customer)
             {
@@ -76,9 +76,11 @@ namespace FixMeetWebApi.Controllers
             //var rwq = db.RequestModels.Where(o => o.RequestID == requestId).FirstOrDefault().RequestID;
             
            
+
             var user_id = User.Identity.GetUserId();
             var user = db.Users.Where(u => u.Id == user_id).FirstOrDefault();
             var user_role = user.UserRole;
+            var count = db.OfferModels.Where(off => off.RequestID == requestId && off.UserID == user_id).ToList().Count();
 
             var req = db.RequestModels.Where(r => r.RequestID == requestId).FirstOrDefault();
             //offerModels.RequestID = requestId;
@@ -94,7 +96,7 @@ namespace FixMeetWebApi.Controllers
             //var userName = User.Identity.GetUserName();
             //var requestId = db.Users.Where(u => u.UserName == userName).FirstOrDefault().;
             // && user_role == UserRole.Supplier
-            if (ModelState.IsValid && user_role == UserRole.Supplier)
+            if (ModelState.IsValid && user_role == UserRole.Supplier && count == 0)
             {
                 offerModels.OfferDate = DateTime.Now;
                 offerModels.UserID = user_id;

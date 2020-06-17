@@ -96,6 +96,7 @@
                         @*@Html.ActionLink("Reserve an offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = item.RequestID })*@
                         @Html.ActionLink("Reserve an offer", "Create", "OfferModels", new { item.RequestID }, null)
 
+
                     }
                     @if (user_role == UserRole.Customer)
                     {
@@ -104,7 +105,12 @@
                     }
                     @*@Html.ActionLink("Reserve an offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = item.RequestID }) |*@
                     @Html.ActionLink("Details", "Details", new { id = item.RequestID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.RequestID })
+                    @if (user_role == UserRole.Supplier)
+                    {
+                        @Html.ActionLink("Delete", "Delete", new { id = item.RequestID })
+
+                    }
+
                 </td>
 
                  @*default code by scalfolding
