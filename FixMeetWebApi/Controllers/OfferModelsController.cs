@@ -50,7 +50,7 @@ namespace FixMeetWebApi.Controllers
 
             if (userRole == UserRole.Customer)
             {
-                var offer = db.OfferModels.Where(off => off.RequestID == requestId).ToList();
+                var offer = db.OfferModels.Where(off => off.RequestID == requestId && off.UserID == user_id).ToList();
                 return View(offer);
 
             }
