@@ -21,22 +21,18 @@ namespace FixMeetWebApi.Controllers
             var user_id = User.Identity.GetUserId();
             var user = db.Users.Where(u => u.Id == user_id).FirstOrDefault();
             var userRole = user.UserRole;
-            var email = user.Email;
 
-
-
-            //if (userRole == UserRole.Supplier)
-            //{
-            //    var offer = db.OfferModels.Where(off => off.UserID == user_id).ToList();
-            //    return View(offer);
-            //}
-
-            //if (userRole == UserRole.Customer)
-            //{
-            //    var offer = db.OfferModels.Where(off => off.RequestID == requestId).ToList();
-            //    return View(offer);
-
-            //}
+            if (userRole == UserRole.Supplier)
+            {
+                var booking = db.BookingModels.Where(book => book.SuppId == user_id).ToList();
+                return View(booking);
+            }
+            
+            if (userRole == UserRole.Supplier)
+            {
+                var booking = db.BookingModels.Where(book => book.CustId == user_id).ToList();
+                return View(booking);
+            }
             //var offer = db.OfferModels.Where(off => off.OfferID == offerId).FirstOrDefault();
             //var sup_first_name = offer.SupplierFirstName;
             //var sup_last_name = offer.SupplierLastName;
@@ -86,7 +82,7 @@ namespace FixMeetWebApi.Controllers
             var request = db.RequestModels.Where(req => req.RequestID == offer.RequestID).FirstOrDefault();
             var requestIsOpen = request.IsOpen;
             var request_id = offer.RequestID;
-
+            var supp_id = offer.UserID;
             
 
             if (ModelState.IsValid)
@@ -98,6 +94,9 @@ namespace FixMeetWebApi.Controllers
                 bookingModels.SuppLastName = offer.SupplierLastName;
                 bookingModels.CustFirstName = request.CustomerFirstName;
                 bookingModels.CustLastName = request.CustomerLastName;
+                bookingModels.CustId = user_id;
+                bookingModels.SuppId = supp_id;
+
                 request.IsOpen = false;
 
                 db.BookingModels.Add(bookingModels);
