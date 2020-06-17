@@ -1,11 +1,18 @@
 ﻿@model FixMeetWebApi.Models.OfferModels
-
+@using Microsoft.AspNet.Identity
+@using System.Data.Entity;
+@using System.Web.Mvc;
+@using FixMeetWebApi.Models;
 @{
     ViewBag.Title = "Details";
 }
 
 <h2>Details</h2>
-
+@{
+    var db = new ApplicationDbContext();
+    var user_id = User.Identity.GetUserId();
+    var user_role = db.Users.Where(u => u.Id == user_id).FirstOrDefault().UserRole;
+}
 <div>
     <h4>OfferModels</h4>
     <hr />
@@ -45,6 +52,10 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.OfferID }) |
+
+    @if (user_role == UserRole.Customer)
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.RequestID })
+    }
     @Html.ActionLink("Back to List", "Index")
 </p>

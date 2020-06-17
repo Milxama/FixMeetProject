@@ -70,12 +70,18 @@
             <td>
                 @if (user_role == UserRole.Customer)
                 {
-                    @Html.ActionLink("Booking", "Create", "BookingModels", new { item.OfferID }, null) 
+                    @Html.ActionLink("Booking", "Create", "BookingModels", new { item.OfferID }, null)
                 }
 
-                 @*@Html.ActionLink("Edit", "Edit", new { id = item.OfferID }) |*@
+
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.OfferID }) |*@
                 @Html.ActionLink("Details", "Details", new { id = item.OfferID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.OfferID })
+
+                @if (user_role == UserRole.Customer)
+
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.OfferID })
+                }
             </td>
         </tr>
     }

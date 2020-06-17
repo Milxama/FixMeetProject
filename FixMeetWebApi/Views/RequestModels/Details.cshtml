@@ -1,21 +1,50 @@
 ﻿@model FixMeetWebApi.Models.RequestModels
+@using Microsoft.AspNet.Identity
+@using System.Data.Entity;
+@using System.Web.Mvc;
+@using FixMeetWebApi.Models;
 
 @{
     ViewBag.Title = "Details";
 }
 
 <h2>Details</h2>
-
+@{
+    var db = new ApplicationDbContext();
+    var user_id = User.Identity.GetUserId();
+    var user_role = db.Users.Where(u => u.Id == user_id).FirstOrDefault().UserRole;
+}
 <div>
     <h4>RequestModels</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestID)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.RequestDate)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.RequestDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerFirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerLastName)
         </dd>
 
         <dt>
@@ -33,18 +62,30 @@
         <dd>
             @Html.DisplayFor(model => model.Description)
         </dd>
-
         <dt>
+            @Html.DisplayNameFor(model => model.IsOpen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsOpen)
+        </dd>
+        
+
+        @*<dt>
             @Html.DisplayNameFor(model => model.UserID)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.UserID)
-        </dd>
+        </dd>*@
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.RequestID }) |
+
+    @if (user_role == UserRole.Customer)
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.RequestID }) 
+    }
     @Html.ActionLink("Back to List", "Index")
 </p>
