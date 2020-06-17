@@ -107,7 +107,7 @@ namespace FixMeetWebApi.Controllers
                 db.OfferModels.Add(offerModels);
                 req.Offers.Add(offerModels);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { offerModels.RequestID }) ;
             }
 
             return View(offerModels);
