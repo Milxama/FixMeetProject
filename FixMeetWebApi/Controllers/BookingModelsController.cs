@@ -23,6 +23,20 @@ namespace FixMeetWebApi.Controllers
             var userRole = user.UserRole;
             var email = user.Email;
 
+
+
+            //if (userRole == UserRole.Supplier)
+            //{
+            //    var offer = db.OfferModels.Where(off => off.UserID == user_id).ToList();
+            //    return View(offer);
+            //}
+
+            //if (userRole == UserRole.Customer)
+            //{
+            //    var offer = db.OfferModels.Where(off => off.RequestID == requestId).ToList();
+            //    return View(offer);
+
+            //}
             //var offer = db.OfferModels.Where(off => off.OfferID == offerId).FirstOrDefault();
             //var sup_first_name = offer.SupplierFirstName;
             //var sup_last_name = offer.SupplierLastName;
@@ -33,8 +47,8 @@ namespace FixMeetWebApi.Controllers
 
             //var booking_list = db.BookingModels.Where(booking => booking.CustFirstName == cust_first_name && booking.CustLastName == cust_last_name).ToList();
 
-           
-           
+
+
             return View(db.BookingModels.ToList());
         }
 

@@ -88,7 +88,7 @@ namespace FixMeetWebApi.Controllers
                 requestModels.CustomerLastName = user.LastName;
                 db.RequestModels.Add(requestModels);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index1");
             }
 
             return View(requestModels);
