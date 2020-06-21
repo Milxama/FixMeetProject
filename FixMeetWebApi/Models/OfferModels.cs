@@ -18,9 +18,9 @@ namespace FixMeetWebApi.Models
         [Required]
         public string Description { get; set; }
 
-     //   public Booking Booking { get; set; } //refernce to booking if exists, else will be NULL
+        //   public Booking Booking { get; set; } //refernce to booking if exists, else will be NULL
 
-
+        public int Cost { get; set; }
         //FK
         public string UserID { get; set; }
         [Required]

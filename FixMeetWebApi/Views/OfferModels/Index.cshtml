@@ -51,6 +51,9 @@
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Cost)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.RequestID)
         </th>
         <th></th>
@@ -58,42 +61,45 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.OfferID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SupplierFirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SupplierLastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OfferDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RequestID)
-            </td>
-            <td>
-                @if (user_role == UserRole.Customer)
-                {
-                    @Html.ActionLink("Booking", "Create", "BookingModels", new { item.OfferID }, null)
-                }
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.OfferID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SupplierFirstName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SupplierLastName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.OfferDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Cost)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.RequestID)
+    </td>
+    <td>
+        @if (user_role == UserRole.Customer)
+        {
+            @Html.ActionLink("Booking", "Create", "BookingModels", new { item.OfferID }, null)
+        }
 
 
-                @*@Html.ActionLink("Edit", "Edit", new { id = item.OfferID }) |*@
-                @Html.ActionLink("Details", "Details", new { id = item.OfferID }) |
+        @*@Html.ActionLink("Edit", "Edit", new { id = item.OfferID }) |*@
+        @Html.ActionLink("Details", "Details", new { id = item.OfferID }) |
 
-                @if (user_role == UserRole.Supplier)
+        @if (user_role == UserRole.Supplier)
 
-                {
-                    @Html.ActionLink("Delete", "Delete", new { id = item.OfferID })
-                }
-            </td>
-        </tr>
+        {
+            @Html.ActionLink("Delete", "Delete", new { id = item.OfferID })
+        }
+    </td>
+</tr>
     }
 
 </table>

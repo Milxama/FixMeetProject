@@ -22,15 +22,15 @@ namespace FixMeetWebApi.Controllers
             var user = db.Users.Where(u => u.Id == user_id).FirstOrDefault();
             var userRole = user.UserRole;
 
-            if (userRole == UserRole.Supplier)
+            if (userRole == UserRole.Customer)
             {
-                var booking = db.BookingModels.Where(book => book.SuppId == user_id).ToList();
+                var booking = db.BookingModels.Where(book => book.CustId == user_id).ToList();
                 return View(booking);
             }
             
             if (userRole == UserRole.Supplier)
             {
-                var booking = db.BookingModels.Where(book => book.CustId == user_id).ToList();
+                var booking = db.BookingModels.Where(book => book.SuppId == user_id).ToList();
                 return View(booking);
             }
             //var offer = db.OfferModels.Where(off => off.OfferID == offerId).FirstOrDefault();

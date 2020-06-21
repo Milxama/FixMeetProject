@@ -67,7 +67,7 @@ namespace FixMeetWebApi.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Description")] OfferModels offerModels, int requestId)
+        public ActionResult Create([Bind(Include = "Description, Cost")] OfferModels offerModels, int requestId)
         {
             //var rwq = db.RequestModels.Where(o => o.RequestID == requestId).FirstOrDefault().RequestID;
             
