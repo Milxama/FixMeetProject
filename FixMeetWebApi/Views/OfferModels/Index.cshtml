@@ -3,11 +3,7 @@
 @using System.Data.Entity;
 @using System.Web.Mvc;
 @using FixMeetWebApi.Models;
-@{
-    ViewBag.Title = "Index";
-}
 
-<h2>Index</h2>
 @{
     var db = new ApplicationDbContext();
     var user_id = User.Identity.GetUserId();
@@ -17,10 +13,23 @@
     //var req = db.Offer
 
 }
+@{
+    if (user_role == UserRole.Customer)
+    {
+        ViewBag.Title = "My Offers";
+    }
+    else
+    {
+        ViewBag.Title = "List Of Offers";
+    }
+}
+
+<h2>Index</h2>
+
 <p>
     @if (user_role == UserRole.Supplier)
     {
-      @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Create New", "Create")
     }
 </p>
 <table class="table">

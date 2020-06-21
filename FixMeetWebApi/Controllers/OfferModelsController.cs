@@ -18,7 +18,7 @@ namespace FixMeetWebApi.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: OfferModels
-        
+
         public ActionResult Index(int? requestId)
         {
             var user_id = User.Identity.GetUserId();
