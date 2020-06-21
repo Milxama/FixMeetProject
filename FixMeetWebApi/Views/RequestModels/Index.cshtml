@@ -10,6 +10,9 @@
     //var offer_count = 0;
 
     var request = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault();
+
+    var old_requests = db.RequestModels.Where(oreq => oreq.IsOpen == false).ToList();
+    var old_count = old_requests.Count();
     //if (request.IsOpen == true)
     //{
     //    var requestId = request.RequestID;
@@ -144,81 +147,3 @@
 
 
 </script>
-
-@*@if (user_role == UserRole.Customer) //if costumer
-    {
-
-
-        <table class="table">
-            <tr>
-                <th>
-                    @/*Html.DisplayNameFor(model => model.RequestDate)*/
-                </th>
-                <th>
-                    @/*Html.DisplayNameFor(model => model.Category)*/
-                </th>
-                <th>
-                    @/*Html.DisplayNameFor(model => model.Description)*/
-                </th>
-                <th>
-                    @/*Html.DisplayNameFor(model => model.UserID)*/
-                </th>
-                <th>
-                    @/*Html.DisplayNameFor(model => model.IsOpen)*/
-                </th>
-                <th></th>
-            </tr>
-
-            @//foreach (var item in Model)
-        //{
-                <tr>
-                    <td>
-                        @/*Html.DisplayFor(modelItem => item.RequestDate)*/
-                    </td>
-                    <td>
-                        @/*Html.DisplayFor(modelItem => item.Category)*/
-                    </td>
-                    <td>
-                        @/*Html.DisplayFor(modelItem => item.Description)*/
-                    </td>
-                    <td>
-                        @/*Html.DisplayFor(modelItem => item.UserID)*/
-                    </td>
-                    <td>
-                        @/*Html.DisplayFor(modelItem => item.IsOpen)*/
-                    </td>
-
-                    <td>
-
-                        @//if (db.RequestModels.Where(req => req.UserID == user_id && req.IsOpen == true).FirstOrDefault().IsOpen == true)
-        //{
-                            @/*Html.ActionLink("Reserve an offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = item.RequestID })*/
-
-
-        //}
-                        @/*Html.ActionLink("Details", "Details", new { id = item.RequestID })*/ |
-                        @/*Html.ActionLink("Delete", "Delete", new { id = item.RequestID })*/
-
-                        @Html.ActionLink("Reserve an offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = item.RequestID }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.RequestID }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.RequestID })
-
-
-                    </td>
-
-                    default code by scalfolding
-                        <td>
-                                @Html.ActionLink("Reserve an offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = item.RequestID }) |
-                                @Html.ActionLink("Edit", "Edit", new { id = item.RequestID }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.RequestID }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.RequestID })
-                            </td>
-                </tr>
-        }
-
-        </table>
-
-    @if (user_role == UserRole.Supplier)
-        {
-
-        }*@

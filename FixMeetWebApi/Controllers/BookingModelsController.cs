@@ -84,9 +84,12 @@ namespace FixMeetWebApi.Controllers
             var request_id = offer.RequestID;
             var supp_id = offer.UserID;
 
+
             
 
-            if (ModelState.IsValid)
+            
+
+            if (ModelState.IsValid && requestIsOpen == true)
             {
                 bookingModels.BookingDate = DateTime.Now;
                 bookingModels.OfferID = offerId;
