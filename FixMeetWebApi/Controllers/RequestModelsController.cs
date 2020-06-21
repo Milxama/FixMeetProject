@@ -74,10 +74,10 @@ namespace FixMeetWebApi.Controllers
 
 
             //each customer can open only one request
-            if (request_count > 0)
-            {
-                return RedirectToAction("Index");
-            }
+            //if (request_count > 0)
+            //{
+            //    return RedirectToAction("Index");
+            //}
             if (ModelState.IsValid && user.UserRole == UserRole.Customer)
             {
                 requestModels.RequestDate = DateTime.Now;

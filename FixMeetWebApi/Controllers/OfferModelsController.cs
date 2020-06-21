@@ -96,7 +96,7 @@ namespace FixMeetWebApi.Controllers
             //var userName = User.Identity.GetUserName();
             //var requestId = db.Users.Where(u => u.UserName == userName).FirstOrDefault().;
             // && user_role == UserRole.Supplier
-            if (ModelState.IsValid && user_role == UserRole.Supplier && count == 0)
+            if (ModelState.IsValid && user_role == UserRole.Supplier)
             {
                 offerModels.OfferDate = DateTime.Now;
                 offerModels.UserID = user_id;
