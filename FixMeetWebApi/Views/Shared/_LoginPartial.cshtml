@@ -40,13 +40,13 @@
         @{ if (user_role == UserRole.Customer)
             {
                 <li>
-                    @Html.ActionLink("Hello " + user_name + "!" + "You have a customer permissions", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                    @Html.ActionLink("Hello " + user_name + "!    " + " " + "You have a customer permissions", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
                 </li>
             }
             if (user_role == UserRole.Supplier)
             {
                 <li>
-                    @Html.ActionLink("Hello " + user_name + "!" + "Your specialization is: " + user_category, "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                    @Html.ActionLink("Hello " + user_name + "!   " + " " + "Your specialization is: " + user_category, "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
                 </li>
             }
         }
