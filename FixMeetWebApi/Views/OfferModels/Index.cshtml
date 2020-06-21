@@ -86,7 +86,7 @@
                 @*@Html.ActionLink("Edit", "Edit", new { id = item.OfferID }) |*@
                 @Html.ActionLink("Details", "Details", new { id = item.OfferID }) |
 
-                @if (user_role == UserRole.Customer)
+                @if (user_role == UserRole.Supplier)
 
                 {
                     @Html.ActionLink("Delete", "Delete", new { id = item.OfferID })
