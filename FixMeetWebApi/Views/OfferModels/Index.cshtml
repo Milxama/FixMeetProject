@@ -17,14 +17,15 @@
     if (user_role == UserRole.Customer)
     {
         ViewBag.Title = "My Offers";
+        <h2>My Offers</h2>
     }
     else
     {
         ViewBag.Title = "List Of Offers";
+        <h2>List Of Offers</h2>
     }
 }
 
-<h2>Index</h2>
 
 <p>
     @if (user_role == UserRole.Supplier)

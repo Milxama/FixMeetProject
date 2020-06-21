@@ -15,13 +15,14 @@
     if (user_role == UserRole.Customer)
     {
         ViewBag.Title = "My Booking";
+        <h2>My Booking</h2>
     }
     else
     {
         ViewBag.Title = "List Of Booking";
+        <h2>List Of Booking</h2>
     }
 }
-<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -34,9 +35,9 @@
         <th>
             @Html.DisplayNameFor(model => model.BookingDate)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Description)
-        </th>
+        </th>*@
         @*<th>
                 @Html.DisplayNameFor(model => model.CustFirstName)
             </th>
@@ -66,9 +67,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.BookingDate)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Description)
-            </td>
+            </td>*@
             @*<td>
                     @Html.DisplayFor(modelItem => item.CustFirstName)
                 </td>

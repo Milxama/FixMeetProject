@@ -74,7 +74,7 @@ namespace FixMeetWebApi.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Description")] BookingModels bookingModels, int offerId)
+        public ActionResult Create([Bind] BookingModels bookingModels, int offerId)
         {
 
             var offer = db.OfferModels.Where(off => off.OfferID == offerId).FirstOrDefault();
@@ -83,6 +83,7 @@ namespace FixMeetWebApi.Controllers
             var requestIsOpen = request.IsOpen;
             var request_id = offer.RequestID;
             var supp_id = offer.UserID;
+
             
 
             if (ModelState.IsValid)

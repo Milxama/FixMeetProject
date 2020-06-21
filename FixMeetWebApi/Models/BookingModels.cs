@@ -16,8 +16,8 @@ namespace FixMeetWebApi.Models
         [Required]
         public DateTime BookingDate { get; set; }
 
-        [Required]
-        public string Description { get; set; }
+        //[Required]
+        //public string Description { get; set; }
 
         [Required]
         public int OfferID { get; set; }
