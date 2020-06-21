@@ -38,12 +38,26 @@
         <th>
             @Html.DisplayNameFor(model => model.OfferID)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SupplierFirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SupplierLastName)
-        </th>
+
+        @if (user_role == UserRole.Customer)
+        {
+            <th>
+                @Html.DisplayNameFor(model => model.SupplierFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupplierLastName)
+            </th>
+        }
+
+        @if (user_role == UserRole.Supplier)
+        {
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerFirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerLastName)
+            </th>
+        }
         <th>
             @Html.DisplayNameFor(model => model.OfferDate)
         </th>
@@ -65,12 +79,26 @@
     <td>
         @Html.DisplayFor(modelItem => item.OfferID)
     </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.SupplierFirstName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.SupplierLastName)
-    </td>
+
+    @if (user_role == UserRole.Customer)
+    {
+        <td>
+            @Html.DisplayFor(modelItem => item.SupplierFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SupplierLastName)
+        </td>
+    }
+    @if (user_role == UserRole.Supplier)
+    {
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerLastName)
+        </td>
+    }
+
     <td>
         @Html.DisplayFor(modelItem => item.OfferDate)
     </td>

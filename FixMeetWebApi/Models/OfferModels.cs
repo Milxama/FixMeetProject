@@ -26,10 +26,16 @@ namespace FixMeetWebApi.Models
         [Required]
         public int RequestID { get; set; }
 
-        [DisplayName("First Name")]
+        [DisplayName("Supplier First Name")]
         public string SupplierFirstName { get; set; }
-        [DisplayName("Last Name")]
+        [DisplayName("Supplier Last Name")]
         public string SupplierLastName { get; set; }
+
+        [DisplayName("Customer First Name")]
+        public string CustomerFirstName { get; set; }
+        [DisplayName("Customer Last Name")]
+        public string CustomerLastName { get; set; }
+
 
         public virtual RequestModels Request { get; set; }
 
