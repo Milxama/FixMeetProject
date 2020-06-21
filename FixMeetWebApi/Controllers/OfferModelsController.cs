@@ -79,6 +79,10 @@ namespace FixMeetWebApi.Controllers
             var count = db.OfferModels.Where(off => off.RequestID == requestId && off.UserID == user_id).ToList().Count();
 
             var req = db.RequestModels.Where(r => r.RequestID == requestId).FirstOrDefault();
+            var customer_first = req.CustomerFirstName;
+            var customer_last = req.CustomerLastName;
+
+
             //offerModels.RequestID = requestId;
             //offerModels.Request = req;
             //var request_id = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault().RequestID;
@@ -98,6 +102,8 @@ namespace FixMeetWebApi.Controllers
                 offerModels.UserID = user_id;
                 offerModels.SupplierFirstName = user.FirstName;
                 offerModels.SupplierLastName = user.LastName;
+                offerModels.CustomerFirstName = customer_first;
+                offerModels.CustomerLastName = customer_last;
                 offerModels.RequestID = requestId;
                 offerModels.Request = req;
                 db.OfferModels.Add(offerModels);
