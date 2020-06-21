@@ -45,7 +45,7 @@ namespace FixMeetWebApi.Controllers
             var user = db.Users.Where(u => u.Id == user_id).FirstOrDefault();
            
             var userRole = db.Users.Where(u => u.Id == user_id).FirstOrDefault().UserRole;
-
+            
 
 
             if (userRole == UserRole.Customer)

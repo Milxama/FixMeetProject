@@ -38,12 +38,15 @@
         <th>
             @Html.DisplayNameFor(model => model.RequestID)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CustomerFirstName)
-        </th>
+        @if (user_role == UserRole.Supplier)
+        {
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerFirstName)
+            </th>
         <th>
             @Html.DisplayNameFor(model => model.CustomerLastName)
         </th>
+        }
         <th>
             @Html.DisplayNameFor(model => model.RequestDate)
         </th>
@@ -61,66 +64,69 @@
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RequestID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CustomerFirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CustomerLastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RequestDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsOpen)
-                </td>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.RequestID)
+    </td>
+    @if (user_role == UserRole.Supplier)
+    {
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerLastName)
+        </td>
+    }
+        <td>
+            @Html.DisplayFor(modelItem => item.RequestDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsOpen)
+        </td>
 
-                <td>
+        <td>
 
-                    @*@if (db.RequestModels.Where(req => req.IsOpen == true).FirstOrDefault().IsOpen == true)
-        {
-            @Html.ActionLink("Reserve an offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = item.RequestID })
-        }*@
+            @*@if (db.RequestModels.Where(req => req.IsOpen == true).FirstOrDefault().IsOpen == true)
+                {
+                    @Html.ActionLink("Reserve an offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = item.RequestID })
+                }*@
 
-                    @if (user_role == UserRole.Supplier)
-                    {
-                        @*@Html.ActionLink("Reserve an offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = item.RequestID })*@
-                        @Html.ActionLink("Reserve an offer", "Create", "OfferModels", new { item.RequestID }, null)
+            @if (user_role == UserRole.Supplier)
+            {
+                @*@Html.ActionLink("Reserve an offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = item.RequestID })*@
+                @Html.ActionLink("Reserve an offer", "Create", "OfferModels", new { item.RequestID }, null)
 
 
-                    }
-                    @if (user_role == UserRole.Customer)
-                    {
+            }
+            @if (user_role == UserRole.Customer)
+            {
 
-                        @Html.ActionLink("Offers to this Request", "Index", "OfferModels", new { item.RequestID }, null)
-                    }
-                    @*@Html.ActionLink("Reserve an offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = item.RequestID }) |*@
-                    @Html.ActionLink("Details", "Details", new { id = item.RequestID }) |
-                    @if (user_role == UserRole.Customer)
-                    {
-                        @Html.ActionLink("Delete", "Delete", new { id = item.RequestID })
+                @Html.ActionLink("Offers to this Request", "Index", "OfferModels", new { item.RequestID }, null)
+            }
+            @*@Html.ActionLink("Reserve an offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = item.RequestID }) |*@
+            @Html.ActionLink("Details", "Details", new { id = item.RequestID }) |
+            @if (user_role == UserRole.Customer)
+            {
+                @Html.ActionLink("Delete", "Delete", new { id = item.RequestID })
 
-                    }
+            }
 
-                </td>
+        </td>
 
-                 @*default code by scalfolding
+        @*default code by scalfolding
                 <td>
                 @Html.ActionLink("Reserve an offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = item.RequestID }) |
                 @Html.ActionLink("Edit", "Edit", new { id = item.RequestID }) |
                 @Html.ActionLink("Details", "Details", new { id = item.RequestID }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.RequestID })
             </td>*@
-            </tr>
+    </tr>
         }
 
     </table>
