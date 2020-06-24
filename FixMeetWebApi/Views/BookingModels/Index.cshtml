@@ -29,9 +29,9 @@
 </p>*@
 <table class="table">
     <tr>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.BookingID)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.BookingDate)
         </th>
@@ -57,20 +57,20 @@
                 @Html.DisplayNameFor(model => model.SuppLastName)
             </th>
         }
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.RequestID)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.OfferID)
-        </th>
+        </th>*@
     </tr>
 
     @foreach (var item in Model)
     {
 <tr>
-    <td>
+    @*<td>
         @Html.DisplayFor(modelItem => item.BookingID)
-    </td>
+    </td>*@
     <td>
         @Html.DisplayFor(modelItem => item.BookingDate)
     </td>
@@ -95,12 +95,12 @@
             @Html.DisplayFor(modelItem => item.SuppLastName)
         </td>
     }
-    <td>
+    @*<td>
         @Html.DisplayFor(modelItem => item.OfferID)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.RequestID)
-    </td>
+    </td>*@
     <td>
         @*@Html.ActionLink("Edit", "Edit", new { id = item.BookingID }) |*@
         @Html.ActionLink("Details", "Details", new { id = item.BookingID }) |

@@ -35,9 +35,9 @@
 </p>*@
 <table class="table">
     <tr>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.OfferID)
-        </th>
+        </th>*@
 
         @if (user_role == UserRole.Customer)
         {
@@ -67,18 +67,18 @@
         <th>
             @Html.DisplayNameFor(model => model.Cost)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.RequestID)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
 <tr>
-    <td>
+    @*<td>
         @Html.DisplayFor(modelItem => item.OfferID)
-    </td>
+    </td>*@
 
     @if (user_role == UserRole.Customer)
     {
@@ -108,9 +108,9 @@
     <td>
         @Html.DisplayFor(modelItem => item.Cost)
     </td>
-    <td>
+    @*<td>
         @Html.DisplayFor(modelItem => item.RequestID)
-    </td>
+    </td>*@
     <td>
         @if (user_role == UserRole.Customer)
         {

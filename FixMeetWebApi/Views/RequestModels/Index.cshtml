@@ -50,9 +50,9 @@
 
 <table class="table">
     <tr>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.RequestID)
-        </th>
+        </th>*@
         @if (user_role == UserRole.Supplier)
         {
             <th>
@@ -86,9 +86,9 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.RequestID)
-            </td>
+            </td>*@
             @if (user_role == UserRole.Supplier)
             {
                 <td>
