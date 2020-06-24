@@ -421,6 +421,7 @@
     <Content Include="Views\BookingModels\Details.cshtml" />
     <Content Include="Views\BookingModels\Edit.cshtml" />
     <Content Include="Views\BookingModels\Index.cshtml" />
+    <Content Include="Views\RequestModels\ClosedRequests.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

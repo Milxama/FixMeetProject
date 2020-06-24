@@ -74,91 +74,94 @@
                 @Html.DisplayNameFor(model => model.Address)
             </th>
         }
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsOpen)
-            </th>
-            <th></th>
-        </tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsOpen)
+        </th>
+        <th></th>
+    </tr>
 
     @foreach (var item in Model)
     {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.RequestID)
-    </td>
-    @if (user_role == UserRole.Supplier)
-    {
-        <td>
-            @Html.DisplayFor(modelItem => item.CustomerFirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CustomerLastName)
-        </td>
-    }
-    <td>
-        @Html.DisplayFor(modelItem => item.RequestDate)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Category)
-    </td>
-    @if (user_role == UserRole.Supplier)
-    {
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-    }
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsOpen)
-        </td>
-
-        <td>
-
-            @*@if (db.RequestModels.Where(req => req.IsOpen == true).FirstOrDefault().IsOpen == true)
-                {
-                    @Html.ActionLink("Reserve an offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = item.RequestID })
-                }*@
-
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestID)
+            </td>
             @if (user_role == UserRole.Supplier)
             {
-                @*@Html.ActionLink("Reserve an offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = item.RequestID })*@
-                @Html.ActionLink("Reserve an offer", "Create", "OfferModels", new { item.RequestID }, null)
-
-
-            }
-            @if (user_role == UserRole.Customer)
-            {
-
-                @Html.ActionLink("Offers to this Request", "Index", "OfferModels", new { item.RequestID }, null)
-            }
-            @*@Html.ActionLink("Reserve an offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = item.RequestID }) |*@
-            @Html.ActionLink("Details", "Details", new { id = item.RequestID }) |
-            @if (user_role == UserRole.Customer)
-            {
-                @Html.ActionLink("Delete", "Delete", new { id = item.RequestID })
-
-            }
-
-        </td>
-
-        @*default code by scalfolding
                 <td>
-                @Html.ActionLink("Reserve an offer", "Create", "OfferModels", routeValues: null, htmlAttributes: new { id = item.RequestID }) |
-                @Html.ActionLink("Edit", "Edit", new { id = item.RequestID }) |
+                    @Html.DisplayFor(modelItem => item.CustomerFirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerLastName)
+                </td>
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.RequestDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            @if (user_role == UserRole.Supplier)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsOpen, new { @id = "isOpenSelectList", @class = "form-control", onchange = "setOpenSelected()" })
+            </td>
+
+            <td>
+
+                @if (user_role == UserRole.Supplier)
+                {
+                    @Html.ActionLink("Reserve an offer", "Create", "OfferModels", new { item.RequestID }, null)
+
+
+                }
+                @if (user_role == UserRole.Customer)
+                {
+
+                    @Html.ActionLink("Offers to this Request", "Index", "OfferModels", new { item.RequestID }, null) 
+                } |
+
                 @Html.ActionLink("Details", "Details", new { id = item.RequestID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.RequestID })
-            </td>*@
-    </tr>
+                @if (user_role == UserRole.Customer)
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.RequestID })
+                }
+
+            </td>
+        </tr>
     }
 
 </table>
+@if (user_role == UserRole.Customer)
+{
+    @Html.ActionLink("Closed Requests", "ClosedRequests")
 
+}
 <script>
+    function setRoleSelected() {
+        var selectOpen = document.getElementById("isOpenSelectList").value;
+        var db = new ApplicationDbContext();
+        var user_id = User.Identity.GetUserId();
+        var user_role = db.Users.Where(u => u.Id == user_id).FirstOrDefault().UserRole;
+        var address = db.Users.Where(u => u.Id == user_id).FirstOrDefault().Address;
 
+
+        if (selectOpen == false) {
+            document.getElementById("isOpenSelectList").style.display = "none";
+        }
+        else {
+            document.getElementById("isOpenSelectList").style.display = "block";
+        }
+    }
 
 </script>

@@ -89,9 +89,14 @@
 </div>
 <p>
 
-    @if (user_role == UserRole.Customer)
+    @if (user_role == UserRole.Customer && Model.IsOpen == true)
     {
         @Html.ActionLink("Edit", "Edit", new { id = Model.RequestID }) 
+        
+        @Html.ActionLink("Back to List", "Index")
     }
-    @Html.ActionLink("Back to List", "Index")
+    @if (user_role == UserRole.Customer && Model.IsOpen == false)
+    {
+        @Html.ActionLink("Back to List", "ClosedRequests")
+    }
 </p>
