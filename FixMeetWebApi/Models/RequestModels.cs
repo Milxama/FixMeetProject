@@ -25,6 +25,8 @@ namespace FixMeetWebApi.Models
         //public Booking? Booking { get; set; } //refernce to booking if exists, else will be NULL
         [Required]
         public bool IsOpen { get; set; }
+
+        public string Address { get; set; }
         //FK
         public string UserID { get; set; }
 
@@ -33,6 +35,7 @@ namespace FixMeetWebApi.Models
         public string CustomerFirstName { get; set; }
         [DisplayName("Last Name")]
         public string CustomerLastName { get; set; }
+
 
         public virtual IList<OfferModels> Offers { get; set; }
     }

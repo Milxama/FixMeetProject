@@ -21,6 +21,7 @@ namespace FixMeetWebApi.Controllers
             var user_id = User.Identity.GetUserId();
             var user = db.Users.Where(u => u.Id == user_id).FirstOrDefault();
             var userRole = user.UserRole;
+            
             if(userRole == UserRole.Supplier)
             {
                 var req_category_list = db.RequestModels.Where(r => r.Category == user.Category && r.IsOpen == true).ToList();
@@ -29,11 +30,32 @@ namespace FixMeetWebApi.Controllers
 
             if(userRole == UserRole.Customer)
             {
-                var request_list = db.RequestModels.Where(req => req.UserID == user_id).ToList();
+                var request_list = db.RequestModels.Where(req => req.UserID == user_id && req.IsOpen == true).ToList();
                 return View(request_list);
             }
          
             
+            return View(db.RequestModels.ToList());
+        }
+        public ActionResult ClosedRequests()
+        {
+            var user_id = User.Identity.GetUserId();
+            var user = db.Users.Where(u => u.Id == user_id).FirstOrDefault();
+            var userRole = user.UserRole;
+
+            //if (userRole == UserRole.Supplier)
+            //{
+            //    var req_category_list = db.RequestModels.Where(r => r.Category == user.Category && r.IsOpen == true).ToList();
+            //    return View(req_category_list);
+            //}
+
+            if (userRole == UserRole.Customer)
+            {
+                var request_list = db.RequestModels.Where(req => req.UserID == user_id && req.IsOpen == false).ToList();
+                return View(request_list);
+            }
+
+
             return View(db.RequestModels.ToList());
         }
 
@@ -86,6 +108,7 @@ namespace FixMeetWebApi.Controllers
                 requestModels.Offers = null;
                 requestModels.CustomerFirstName = user.FirstName;
                 requestModels.CustomerLastName = user.LastName;
+                requestModels.Address = user.Address;
                 db.RequestModels.Add(requestModels);
                 db.SaveChanges();
                 return RedirectToAction("Index");
