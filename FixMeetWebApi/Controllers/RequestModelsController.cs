@@ -108,7 +108,7 @@ namespace FixMeetWebApi.Controllers
                 requestModels.Offers = null;
                 requestModels.CustomerFirstName = user.FirstName;
                 requestModels.CustomerLastName = user.LastName;
-                requestModels.Address = user.Address;
+               // requestModels.Address = user.Address;
                 db.RequestModels.Add(requestModels);
                 db.SaveChanges();
                 return RedirectToAction("Index");

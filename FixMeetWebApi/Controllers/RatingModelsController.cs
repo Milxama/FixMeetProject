@@ -46,9 +46,12 @@ namespace FixMeetWebApi.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RatingId,RatingDate,Comment,Rating,BookingId,CustId,SuppId,CustFirstName,CustLastName,SuppFirstName,SuppLastName")] RatingModels ratingModels)
+        public ActionResult Create([Bind(Include = "Comment,Rating")] RatingModels ratingModels)
         {
-            if (ModelState.IsValid)
+            ratingModels.RatingDate = DateTime.Now;
+            
+            //ratingModels.BookingId = 
+            if (ModelState.IsValid && ratingModels.Rating > 0 &&ratingModels.Rating < 6)
             {
                 db.RatingModels.Add(ratingModels);
                 db.SaveChanges();

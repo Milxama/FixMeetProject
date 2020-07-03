@@ -334,13 +334,9 @@
     <Compile Include="Migrations\202006211033064_e.Designer.cs">
       <DependentUpon>202006211033064_e.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202006240733484_f.cs" />
-    <Compile Include="Migrations\202006240733484_f.Designer.cs">
-      <DependentUpon>202006240733484_f.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007032134368_g.cs" />
-    <Compile Include="Migrations\202007032134368_g.Designer.cs">
-      <DependentUpon>202007032134368_g.cs</DependentUpon>
+    <Compile Include="Migrations\202007032241253_f.cs" />
+    <Compile Include="Migrations\202007032241253_f.Designer.cs">
+      <DependentUpon>202007032241253_f.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -499,11 +495,8 @@
     <EmbeddedResource Include="Migrations\202006211033064_e.resx">
       <DependentUpon>202006211033064_e.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006240733484_f.resx">
-      <DependentUpon>202006240733484_f.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007032134368_g.resx">
-      <DependentUpon>202007032134368_g.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007032241253_f.resx">
+      <DependentUpon>202007032241253_f.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
