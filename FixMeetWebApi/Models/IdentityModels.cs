@@ -63,5 +63,7 @@ namespace FixMeetWebApi.Models
         public DbSet<OfferModels> OfferModels { get; set; }
 
         public DbSet<BookingModels> BookingModels { get; set; }
+
+        public System.Data.Entity.DbSet<FixMeetWebApi.Models.RatingModels> RatingModels { get; set; }
     }
 }

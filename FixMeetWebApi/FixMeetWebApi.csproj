@@ -265,6 +265,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OfferModelsController.cs" />
+    <Compile Include="Controllers\RatingModelsController.cs" />
     <Compile Include="Controllers\RequestModelsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -427,6 +428,11 @@
     <Content Include="Views\BookingModels\Edit.cshtml" />
     <Content Include="Views\BookingModels\Index.cshtml" />
     <Content Include="Views\RequestModels\ClosedRequests.cshtml" />
+    <Content Include="Views\RatingModels\Create.cshtml" />
+    <Content Include="Views\RatingModels\Delete.cshtml" />
+    <Content Include="Views\RatingModels\Details.cshtml" />
+    <Content Include="Views\RatingModels\Edit.cshtml" />
+    <Content Include="Views\RatingModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
