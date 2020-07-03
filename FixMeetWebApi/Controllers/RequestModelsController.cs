@@ -137,7 +137,7 @@ namespace FixMeetWebApi.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RequestID,RequestDate,Category,Description,UserID")] RequestModels requestModels)
+        public ActionResult Edit([Bind(Include = "Description")] RequestModels requestModels)
         {
             if (ModelState.IsValid)
             {

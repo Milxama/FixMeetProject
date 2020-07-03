@@ -337,6 +337,10 @@
     <Compile Include="Migrations\202006240733484_f.Designer.cs">
       <DependentUpon>202006240733484_f.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007032134368_g.cs" />
+    <Compile Include="Migrations\202007032134368_g.Designer.cs">
+      <DependentUpon>202007032134368_g.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BookingModels.cs" />
@@ -344,6 +348,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OfferModels.cs" />
+    <Compile Include="Models\RatingModels.cs" />
     <Compile Include="Models\RequestModels.cs" />
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -490,6 +495,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006240733484_f.resx">
       <DependentUpon>202006240733484_f.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007032134368_g.resx">
+      <DependentUpon>202007032134368_g.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
