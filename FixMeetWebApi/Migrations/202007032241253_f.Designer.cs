@@ -13,7 +13,7 @@ namespace FixMeetWebApi.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202006240733484_f"; }
+            get { return "202007032241253_f"; }
         }
         
         string IMigrationMetadata.Source

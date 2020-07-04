@@ -32,7 +32,7 @@ namespace FixMeetWebApi.Models
       //  public virtual IList<BookingModels> Bookings { get; set; }
        // public virtual IList<OfferModels> Offers { get; set; }
        // public virtual IList<RequestModels> Requests { get; set; }
-
+       public double Rating { get; set; }
 
 
 
@@ -63,5 +63,7 @@ namespace FixMeetWebApi.Models
         public DbSet<OfferModels> OfferModels { get; set; }
 
         public DbSet<BookingModels> BookingModels { get; set; }
+
+        public System.Data.Entity.DbSet<FixMeetWebApi.Models.RatingModels> RatingModels { get; set; }
     }
 }

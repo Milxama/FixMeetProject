@@ -68,12 +68,12 @@
         <th>
             @Html.DisplayNameFor(model => model.Category)
         </th>
-        @if (user_role == UserRole.Supplier)
+        @*@if (user_role == UserRole.Supplier)
         {
             <th>
                 @Html.DisplayNameFor(model => model.Address)
             </th>
-        }
+        }*@
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
@@ -104,12 +104,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Category)
             </td>
-            @if (user_role == UserRole.Supplier)
+            @*@if (user_role == UserRole.Supplier)
             {
                 <td>
                     @Html.DisplayFor(modelItem => item.Address)
                 </td>
-            }
+            }*@
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
@@ -128,14 +128,15 @@
                 @if (user_role == UserRole.Customer)
                 {
 
-                    @Html.ActionLink("Offers to this Request", "Index", "OfferModels", new { item.RequestID }, null) 
+                    @Html.ActionLink("Offers to this Request", "Index", "OfferModels", new { item.RequestID }, null)
                 } |
 
                 @Html.ActionLink("Details", "Details", new { id = item.RequestID }) |
                 @if (user_role == UserRole.Customer)
                 {
                     @Html.ActionLink("Delete", "Delete", new { id = item.RequestID })
-                }
+                } 
+
 
             </td>
         </tr>

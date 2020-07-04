@@ -265,6 +265,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OfferModelsController.cs" />
+    <Compile Include="Controllers\RatingModelsController.cs" />
     <Compile Include="Controllers\RequestModelsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -333,9 +334,13 @@
     <Compile Include="Migrations\202006211033064_e.Designer.cs">
       <DependentUpon>202006211033064_e.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202006240733484_f.cs" />
-    <Compile Include="Migrations\202006240733484_f.Designer.cs">
-      <DependentUpon>202006240733484_f.cs</DependentUpon>
+    <Compile Include="Migrations\202007032241253_f.cs" />
+    <Compile Include="Migrations\202007032241253_f.Designer.cs">
+      <DependentUpon>202007032241253_f.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007040003521_g.cs" />
+    <Compile Include="Migrations\202007040003521_g.Designer.cs">
+      <DependentUpon>202007040003521_g.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -344,6 +349,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OfferModels.cs" />
+    <Compile Include="Models\RatingModels.cs" />
     <Compile Include="Models\RequestModels.cs" />
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -422,6 +428,11 @@
     <Content Include="Views\BookingModels\Edit.cshtml" />
     <Content Include="Views\BookingModels\Index.cshtml" />
     <Content Include="Views\RequestModels\ClosedRequests.cshtml" />
+    <Content Include="Views\RatingModels\Create.cshtml" />
+    <Content Include="Views\RatingModels\Delete.cshtml" />
+    <Content Include="Views\RatingModels\Details.cshtml" />
+    <Content Include="Views\RatingModels\Edit.cshtml" />
+    <Content Include="Views\RatingModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -488,8 +499,11 @@
     <EmbeddedResource Include="Migrations\202006211033064_e.resx">
       <DependentUpon>202006211033064_e.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006240733484_f.resx">
-      <DependentUpon>202006240733484_f.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007032241253_f.resx">
+      <DependentUpon>202007032241253_f.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007040003521_g.resx">
+      <DependentUpon>202007040003521_g.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

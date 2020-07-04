@@ -26,7 +26,7 @@ namespace FixMeetWebApi.Models
         [Required]
         public bool IsOpen { get; set; }
 
-        public string Address { get; set; }
+       // public string Address { get; set; }
         //FK
         public string UserID { get; set; }
 
