@@ -8,6 +8,7 @@
     var db = new ApplicationDbContext();
     var user_id = User.Identity.GetUserId();
     var user_role = db.Users.Where(u => u.Id == user_id).FirstOrDefault().UserRole;
+    var sup_Users = db.Users.Where(u => u.UserRole == UserRole.Supplier).ToList();
     //var request = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault();
 
     //var req = db.Offer
@@ -67,6 +68,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Cost)
         </th>
+        <th>
+            Rating
+        </th>
         @*<th>
             @Html.DisplayNameFor(model => model.RequestID)
         </th>*@
@@ -108,25 +112,38 @@
     <td>
         @Html.DisplayFor(modelItem => item.Cost)
     </td>
+    <td>
+        @sup_Users.Where(s=>s.Id == item.UserID).FirstOrDefault().Rating
+    </td>
     @*<td>
         @Html.DisplayFor(modelItem => item.RequestID)
     </td>*@
-    <td>
-        @if (user_role == UserRole.Customer)
+<td>
+    @if (user_role == UserRole.Customer)
+    {
+        @Html.ActionLink("Booking", "Create", "BookingModels", new { item.OfferID }, null)
+    } |
+
+
+    @*@Html.ActionLink("Edit", "Edit", new { id = item.OfferID }) |*@
+    @Html.ActionLink("Details", "Details", new { id = item.OfferID }) |
+
+    @if (user_role == UserRole.Supplier)
+
+    {
+        @Html.ActionLink("Delete", "Delete", new { id = item.OfferID })
+    }
+
+    @*@if (user_role == UserRole.Customer)
         {
-            @Html.ActionLink("Booking", "Create", "BookingModels", new { item.OfferID }, null)
-        }
+            @Html.ActionLink("View Supplier Information", "ViewSupplierInformation", "Account", new { item.OfferID }, null)
+        } |*@
+
+    @Html.ActionLink("Chat", "Create", "ChatModels", new { item.OfferID }, null)
 
 
-        @*@Html.ActionLink("Edit", "Edit", new { id = item.OfferID }) |*@
-        @Html.ActionLink("Details", "Details", new { id = item.OfferID }) |
 
-        @if (user_role == UserRole.Supplier)
-
-        {
-            @Html.ActionLink("Delete", "Delete", new { id = item.OfferID })
-        }
-    </td>
+</td>
 </tr>
     }
 
