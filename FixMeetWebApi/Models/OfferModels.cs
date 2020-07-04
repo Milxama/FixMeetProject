@@ -26,6 +26,7 @@ namespace FixMeetWebApi.Models
         [Required]
         public int RequestID { get; set; }
 
+
         [DisplayName("Supplier First Name")]
         public string SupplierFirstName { get; set; }
         [DisplayName("Supplier Last Name")]

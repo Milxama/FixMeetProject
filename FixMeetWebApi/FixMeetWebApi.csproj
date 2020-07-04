@@ -342,6 +342,26 @@
     <Compile Include="Migrations\202007040003521_g.Designer.cs">
       <DependentUpon>202007040003521_g.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007041352596_h.cs" />
+    <Compile Include="Migrations\202007041352596_h.Designer.cs">
+      <DependentUpon>202007041352596_h.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007041355146_k.cs" />
+    <Compile Include="Migrations\202007041355146_k.Designer.cs">
+      <DependentUpon>202007041355146_k.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007041357216_l.cs" />
+    <Compile Include="Migrations\202007041357216_l.Designer.cs">
+      <DependentUpon>202007041357216_l.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007041401333_m.cs" />
+    <Compile Include="Migrations\202007041401333_m.Designer.cs">
+      <DependentUpon>202007041401333_m.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007041403463_n.cs" />
+    <Compile Include="Migrations\202007041403463_n.Designer.cs">
+      <DependentUpon>202007041403463_n.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BookingModels.cs" />
@@ -504,6 +524,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007040003521_g.resx">
       <DependentUpon>202007040003521_g.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007041352596_h.resx">
+      <DependentUpon>202007041352596_h.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007041355146_k.resx">
+      <DependentUpon>202007041355146_k.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007041357216_l.resx">
+      <DependentUpon>202007041357216_l.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007041401333_m.resx">
+      <DependentUpon>202007041401333_m.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007041403463_n.resx">
+      <DependentUpon>202007041403463_n.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
