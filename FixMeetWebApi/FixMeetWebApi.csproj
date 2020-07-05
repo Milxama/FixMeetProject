@@ -363,6 +363,10 @@
     <Compile Include="Migrations\202007041403463_n.Designer.cs">
       <DependentUpon>202007041403463_n.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007050745243_1.cs" />
+    <Compile Include="Migrations\202007050745243_1.Designer.cs">
+      <DependentUpon>202007050745243_1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BookingModels.cs" />
@@ -546,6 +550,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007041403463_n.resx">
       <DependentUpon>202007041403463_n.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007050745243_1.resx">
+      <DependentUpon>202007050745243_1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
