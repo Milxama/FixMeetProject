@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<FixMeetWebApi.Models.NegotiationChatModels>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Negotiation";
 }
 
-<h2>Index</h2>
+<h2>Negotiation</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -20,12 +20,12 @@
         <th>
             @Html.DisplayNameFor(model => model.OfferID)
         </th>
-        @*<th>
+        <th>
             @Html.DisplayNameFor(model => model.CustId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.SuppId)
-        </th>*@
+        </th>
         <th></th>
     </tr>
 
@@ -40,17 +40,17 @@
         <td>
             @Html.DisplayFor(modelItem => item.OfferID)
         </td>
-        @*<td>
+        <td>
             @Html.DisplayFor(modelItem => item.CustId)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.SuppId)
-        </td>*@
-        @*<td>
+        </td>
+        <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ChatId }) |
             @Html.ActionLink("Details", "Details", new { id=item.ChatId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ChatId })
-        </td>*@
+        </td>
     </tr>
 }
 
