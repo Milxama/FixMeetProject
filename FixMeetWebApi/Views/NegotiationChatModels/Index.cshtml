@@ -1,0 +1,57 @@
+﻿@model IEnumerable<FixMeetWebApi.Models.NegotiationChatModels>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ChatDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChatText)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OfferID)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.CustId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SuppId)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChatDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChatText)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OfferID)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.CustId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SuppId)
+        </td>*@
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ChatId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ChatId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ChatId })
+        </td>*@
+    </tr>
+}
+
+</table>

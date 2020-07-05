@@ -264,6 +264,7 @@
     <Compile Include="Controllers\BookingModelsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NegotiationChatModelsController.cs" />
     <Compile Include="Controllers\OfferModelsController.cs" />
     <Compile Include="Controllers\RatingModelsController.cs" />
     <Compile Include="Controllers\RequestModelsController.cs" />
@@ -362,12 +363,17 @@
     <Compile Include="Migrations\202007041403463_n.Designer.cs">
       <DependentUpon>202007041403463_n.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007050745243_1.cs" />
+    <Compile Include="Migrations\202007050745243_1.Designer.cs">
+      <DependentUpon>202007050745243_1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BookingModels.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\NegotiationChatModels.cs" />
     <Compile Include="Models\OfferModels.cs" />
     <Compile Include="Models\RatingModels.cs" />
     <Compile Include="Models\RequestModels.cs" />
@@ -453,6 +459,12 @@
     <Content Include="Views\RatingModels\Details.cshtml" />
     <Content Include="Views\RatingModels\Edit.cshtml" />
     <Content Include="Views\RatingModels\Index.cshtml" />
+    <Content Include="Views\NegotiationChatModels\Create.cshtml" />
+    <Content Include="Views\NegotiationChatModels\Delete.cshtml" />
+    <Content Include="Views\NegotiationChatModels\Details.cshtml" />
+    <Content Include="Views\NegotiationChatModels\Edit.cshtml" />
+    <Content Include="Views\NegotiationChatModels\Index.cshtml" />
+    <Content Include="Views\NegotiationChatModels\Negotiation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -539,6 +551,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007041403463_n.resx">
       <DependentUpon>202007041403463_n.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007050745243_1.resx">
+      <DependentUpon>202007050745243_1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

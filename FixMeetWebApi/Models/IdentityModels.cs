@@ -66,6 +66,9 @@ namespace FixMeetWebApi.Models
 
         public System.Data.Entity.DbSet<FixMeetWebApi.Models.RatingModels> RatingModels { get; set; }
 
+        object placeHolderVariable;
+        public System.Data.Entity.DbSet<FixMeetWebApi.Models.NegotiationChatModels> NegotiationChatModels { get; set; }
+
         //object placeHolderVariable;
     }
 }
