@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using FixMeetWebApi.Models;
 using Microsoft.Ajax.Utilities;
+using Microsoft.AspNet.Identity;
 
 namespace FixMeetWebApi.Controllers
 {
@@ -23,7 +24,7 @@ namespace FixMeetWebApi.Controllers
 
             return View(db.NegotiationChatModels.ToList());
         }
-        public ActionResult Negotiation(string custId, string suppId, int offerId)
+        public ActionResult Negotiation(int offerId)
         {
              var chat = db.NegotiationChatModels.Where(c => c.OfferID == offerId).ToList();
             return View(chat);
@@ -56,6 +57,9 @@ namespace FixMeetWebApi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ChatText")] NegotiationChatModels negotiationChatModels, int? offerId)
         {
+            var user_id = User.Identity.GetUserId();
+
+            negotiationChatModels.MessageOwnerId = user_id;
             negotiationChatModels.ChatDate = DateTime.Now;
             negotiationChatModels.OfferID = (int)offerId;
 
@@ -72,7 +76,7 @@ namespace FixMeetWebApi.Controllers
             {
                 db.NegotiationChatModels.Add(negotiationChatModels);
                 db.SaveChanges();
-                return RedirectToAction("Negotiation", new { negotiationChatModels.SuppId, negotiationChatModels.CustId, offerId });
+                return RedirectToAction("Negotiation", new { offerId });
             }
 
             return View(negotiationChatModels);

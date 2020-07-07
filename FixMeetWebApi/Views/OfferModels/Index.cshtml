@@ -113,7 +113,14 @@
         @Html.DisplayFor(modelItem => item.Cost)
     </td>
     <td>
-        @sup_users.Where(s => s.Id == item.UserID).FirstOrDefault().Rating
+             @sup_users.Where(s => s.Id == item.UserID).FirstOrDefault().Rating
+             
+
+             
+
+
+
+
     </td>
     @*<td>
             @Html.DisplayFor(modelItem => item.RequestID)
@@ -122,7 +129,8 @@
         @if (user_role == UserRole.Customer)
         {
             @Html.ActionLink("Booking", "Create", "BookingModels", new { item.OfferID }, null)
-        } |
+        <span>|</span>
+        } 
 
 
         @*@Html.ActionLink("Edit", "Edit", new { id = item.OfferID }) |*@
@@ -132,14 +140,12 @@
 
         {
             @Html.ActionLink("Delete", "Delete", new { id = item.OfferID })
-        }
+            <span>|</span>
+        } 
 
-        @*@if (user_role == UserRole.Customer)
-            {
-                @Html.ActionLink("View Supplier Information", "ViewSupplierInformation", "Account", new { item.OfferID }, null)
-            } |*@
 
-        @Html.ActionLink("Chat", "Create", "NegotiationChatModels", new { item.OfferID }, null)
+
+        @Html.ActionLink("Chat", "Negotiation", "NegotiationChatModels", new { item.OfferID }, null)
 
 
 
@@ -148,3 +154,7 @@
     }
 
 </table>
+<p>
+
+    @Html.ActionLink("Back to My Requests", "Index", "RequestModels")
+</p>
