@@ -14,21 +14,23 @@
     var users = db.Users.ToList();
 
 }
-@*<p>
-    @Html.ActionLink("Create New", "Create")
-    @Html.ActionLink("Create New", "Create", new { @Model.FirstOrDefault().OfferID }, null)
-</p>*@
-  
+<p>
+        @*@Html.ActionLink("Create New", "Create")*@
+        @Html.ActionLink("Send Message", "Create", new { @Model.FirstOrDefault().OfferID }, null)
+        @* @Html.ActionLink("Send Message", "Create", "NegotiationChatModels", new { item.OfferID }, null)*@
+    </p>
+
 <table class="table">
     <tr>
         <th>
             Message Owner
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ChatDate)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.ChatText)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChatDate)
         </th>
         @*<th>
                 @Html.DisplayNameFor(model => model.OfferID)
@@ -46,13 +48,14 @@
     {
         <tr>
             <td>
-                @users.Where(us => us.Id == item.MessageOwnerId).FirstOrDefault().FirstName
+                @users.Where(us => us.Id == item.MessageOwnerId).FirstOrDefault().FirstName  @users.Where(us => us.Id == item.MessageOwnerId).FirstOrDefault().LastName
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ChatText)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ChatDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ChatText)
             </td>
             @*<td>
                     @Html.DisplayFor(modelItem => item.OfferID)
@@ -64,14 +67,11 @@
                     @Html.DisplayFor(modelItem => item.SuppId)
                 </td>*@
             @*<td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ChatId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ChatId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ChatId })
-                
-            </td>*@
-        <td>
-            @Html.ActionLink("Send Message", "Create", "NegotiationChatModels", new { item.OfferID }, null)
-        </td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ChatId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ChatId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ChatId })
+
+                </td>*@
         </tr>
 
 
