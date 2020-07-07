@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using FixMeetWebApi.Models;
 using Microsoft.Ajax.Utilities;
+using Microsoft.AspNet.Identity;
 
 namespace FixMeetWebApi.Controllers
 {
@@ -56,6 +57,9 @@ namespace FixMeetWebApi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ChatText")] NegotiationChatModels negotiationChatModels, int? offerId)
         {
+            var user_id = User.Identity.GetUserId();
+
+            negotiationChatModels.MessageOwnerId = user_id;
             negotiationChatModels.ChatDate = DateTime.Now;
             negotiationChatModels.OfferID = (int)offerId;
 

@@ -23,5 +23,7 @@ namespace FixMeetWebApi.Models
         public string CustId { get; set; }
 
         public string SuppId { get; set; }
+
+        public string MessageOwnerId { get; set; }
     }
 }
