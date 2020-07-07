@@ -23,7 +23,7 @@ namespace FixMeetWebApi.Controllers
 
             return View(db.NegotiationChatModels.ToList());
         }
-        public ActionResult Negotiation(string custId, string suppId, int offerId)
+        public ActionResult Negotiation(int offerId)
         {
              var chat = db.NegotiationChatModels.Where(c => c.OfferID == offerId).ToList();
             return View(chat);
@@ -72,7 +72,7 @@ namespace FixMeetWebApi.Controllers
             {
                 db.NegotiationChatModels.Add(negotiationChatModels);
                 db.SaveChanges();
-                return RedirectToAction("Negotiation", new { negotiationChatModels.SuppId, negotiationChatModels.CustId, offerId });
+                return RedirectToAction("Negotiation", new { offerId });
             }
 
             return View(negotiationChatModels);

@@ -82,6 +82,11 @@ namespace FixMeetWebApi.Controllers
             var customer_first = req.CustomerFirstName;
             var customer_last = req.CustomerLastName;
 
+            var offer_count = db.OfferModels.Where(off => off.UserID == user_id && off.RequestID == requestId).Count();
+            if (offer_count > 0)
+            {
+                return RedirectToAction("Index");
+            }
 
             //offerModels.RequestID = requestId;
             //offerModels.Request = req;

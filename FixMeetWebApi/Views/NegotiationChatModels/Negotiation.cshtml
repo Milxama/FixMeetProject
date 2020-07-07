@@ -1,14 +1,22 @@
 ﻿@model IEnumerable<FixMeetWebApi.Models.NegotiationChatModels>
-
+@using Microsoft.AspNet.Identity
+@using System.Data.Entity;
+@using System.Web.Mvc;
+@using FixMeetWebApi.Models;
 @{
     ViewBag.Title = "Negotiation";
 }
 
 <h2>Negotiation</h2>
+@{
+    var db = new ApplicationDbContext();
+    //var user = User.Identity.GetUserId();
+    var users = db.Users.ToList();
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+}
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
 <table class="table">
     <tr>
         <th>
@@ -17,41 +25,59 @@
         <th>
             @Html.DisplayNameFor(model => model.ChatText)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OfferID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CustId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SuppId)
-        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.OfferID)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.CustId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SuppId)
+            </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ChatDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ChatText)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OfferID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CustId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SuppId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ChatId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ChatId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ChatId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        @*@{
+            var cust = @users.Where(us => us.Id == item.CustId).FirstOrDefault();
+            var supp = @users.Where(us => us.Id == item.SuppId).FirstOrDefault();
+            var cust_first_name = cust.FirstName;
+            var cust_last_name = cust.LastName;
+            var supp_first_name = supp.FirstName;
+            var supp_last_name = supp.LastName;
 
+            var cust_full_name = cust_first_name + cust_last_name;
+            var supp_full_name = supp_first_name + supp_last_name;
+
+           
+        }*@
+        <tr>
+            @*<td>
+                @if (cust.Id == item.CustId)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.ChatDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChatText)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.OfferID)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SuppId)
+                </td>
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.ChatId }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.ChatId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.ChatId })
+                </td>*@
+        </tr>
+
+    }
+    @Html.ActionLink("Send Message", "Create", "NegotiationChatModels", new { @Model.FirstOrDefault().OfferID }, null)
 </table>
