@@ -15,8 +15,10 @@
 
 }
 @*<p>
-        @Html.ActionLink("Create New", "Create")
-    </p>*@
+    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", new { @Model.FirstOrDefault().OfferID }, null)
+</p>*@
+  
 <table class="table">
     <tr>
         <th>
@@ -29,35 +31,22 @@
             @Html.DisplayNameFor(model => model.ChatText)
         </th>
         @*<th>
-            @Html.DisplayNameFor(model => model.OfferID)
-        </th>*@
+                @Html.DisplayNameFor(model => model.OfferID)
+            </th>*@
         @*<th>
-            @Html.DisplayNameFor(model => model.CustId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SuppId)
-        </th>*@
+                @Html.DisplayNameFor(model => model.CustId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SuppId)
+            </th>*@
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        @*@{
-            var cust = @users.Where(us => us.Id == item.CustId).FirstOrDefault();
-            var supp = @users.Where(us => us.Id == item.SuppId).FirstOrDefault();
-            var cust_first_name = cust.FirstName;
-            var cust_last_name = cust.LastName;
-            var supp_first_name = supp.FirstName;
-            var supp_last_name = supp.LastName;
-
-            var cust_full_name = cust_first_name + cust_last_name;
-            var supp_full_name = supp_first_name + supp_last_name;
-
-           
-        }*@
         <tr>
             <td>
-                @users.Where(us => us.Id == item.MessageOwnerId).FirstOrDefault().FirstName + @users.Where(us => us.Id == item.MessageOwnerId).FirstOrDefault().LastName
+                @users.Where(us => us.Id == item.MessageOwnerId).FirstOrDefault().FirstName
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ChatDate)
@@ -68,19 +57,26 @@
             @*<td>
                     @Html.DisplayFor(modelItem => item.OfferID)
                 </td>*@
-                @*<td>
+            @*<td>
                     @Html.DisplayFor(modelItem => item.CustId)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.SuppId)
                 </td>*@
             @*<td>
-                    @Html.ActionLink("Edit", "Edit", new { id=item.ChatId }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.ChatId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.ChatId })
-                </td>*@
+                @Html.ActionLink("Edit", "Edit", new { id = item.ChatId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ChatId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ChatId })
+                
+            </td>*@
+        <td>
+            @Html.ActionLink("Send Message", "Create", "NegotiationChatModels", new { item.OfferID }, null)
+        </td>
         </tr>
 
+
+
+
     }
-    @Html.ActionLink("Send Message", "Create", "NegotiationChatModels", new { @Model.FirstOrDefault().OfferID }, null)
+    @*@Html.ActionLink("Send Message", "Create", "NegotiationChatModels", new { @Model.FirstOrDefault().OfferID }, null)*@
 </table>

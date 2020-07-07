@@ -66,9 +66,10 @@
             @Html.ActionLink("Details", "Details", new { id=item.ChatId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ChatId })
         </td>*@
-    <td>
-        @Html.DisplayFor(modelItem => item.ChatDate)
-    </td>
+<td>
+    @Html.DisplayFor(modelItem => item.ChatDate)
+    @Html.ActionLink("Send Message", "Create", "NegotiationChatModels", new { @Model.FirstOrDefault().OfferID }, null)
+</td>
 </tr>
     }
 
