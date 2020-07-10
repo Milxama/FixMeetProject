@@ -98,7 +98,7 @@
 
     @if (user_role == UserRole.Customer && Model.IsOpen == true)
     {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.RequestID }) 
+        @*@Html.ActionLink("Edit", "Edit", new { id = Model.RequestID })*@ 
         
         @Html.ActionLink("Back to List", "Index")
     }

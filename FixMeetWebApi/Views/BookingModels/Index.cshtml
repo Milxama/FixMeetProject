@@ -111,7 +111,9 @@
     {
 
         var request = db.RequestModels.Where(req => req.RequestID == item.RequestID).FirstOrDefault();
-        if (request.IsOpen == false)
+       // var rating = @Model.ToList();
+        var rating_count = db.RatingModels.Where(r => r.BookingId == item.BookingID).FirstOrDefault();
+        if (request.IsOpen == false && rating_count == null)
         {
             @Html.ActionLink("Rate Supplier", "Create", "RatingModels", new { item.BookingID }, null)
             @*@Html.ActionLink("Rate", "Create", new { id = item.RequestID })*@

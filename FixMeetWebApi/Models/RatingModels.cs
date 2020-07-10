@@ -20,8 +20,7 @@ namespace FixMeetWebApi.Models
         [Required]
         public int Rating { get; set; }
 
-        //[Required]
-        //public int BookingId { get; set; }
+        public int BookingId { get; set; }
 
         public string CustId { get; set; }
 

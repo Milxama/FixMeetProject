@@ -15,10 +15,10 @@
 
 }
 <p>
-        @*@Html.ActionLink("Create New", "Create")*@
-        @Html.ActionLink("Send Message", "Create", new { @Model.FirstOrDefault().OfferID }, null)
-        @* @Html.ActionLink("Send Message", "Create", "NegotiationChatModels", new { item.OfferID }, null)*@
-    </p>
+    @*@Html.ActionLink("Create New", "Create")*@
+    @Html.ActionLink("Send Message", "Create", new { @Model.FirstOrDefault().OfferID }, null)
+    @* @Html.ActionLink("Send Message", "Create", "NegotiationChatModels", new { item.OfferID }, null)*@
+</p>
 
 <table class="table">
     <tr>
@@ -78,5 +78,5 @@
 
 
     }
-    @*@Html.ActionLink("Send Message", "Create", "NegotiationChatModels", new { @Model.FirstOrDefault().OfferID }, null)*@
 </table>
+@Html.ActionLink("Back to Requests", "Index", "RequestModels")

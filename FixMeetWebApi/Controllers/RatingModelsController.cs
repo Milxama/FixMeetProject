@@ -57,7 +57,7 @@ namespace FixMeetWebApi.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Comment,Rating")] RatingModels ratingModels, int? bookingId)
+        public ActionResult Create([Bind(Include = "Comment,Rating")] RatingModels ratingModels, int bookingId)
         {
             ratingModels.RatingDate = DateTime.Now;
 
@@ -82,8 +82,7 @@ namespace FixMeetWebApi.Controllers
             ratingModels.SuppLastName = supplier.LastName;
             ratingModels.CustFirstName = customer.FirstName;
             ratingModels.CustLastName = customer.LastName;
-            
-            //ratingModels.BookingId = 
+            ratingModels.BookingId = bookingId;
             if (ModelState.IsValid && ratingModels.Rating > 0 &&ratingModels.Rating < 6)
             {
 
