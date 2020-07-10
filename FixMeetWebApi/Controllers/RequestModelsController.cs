@@ -24,7 +24,7 @@ namespace FixMeetWebApi.Controllers
             
             if(userRole == UserRole.Supplier)
             {
-                var req_category_list = db.RequestModels.Where(r => r.Category == user.Category && r.IsOpen == true).ToList();
+                var req_category_list = db.RequestModels.Where(r => r.Category == user.Category && r.IsOpen == true && r.Address == user.Address).ToList();
                 return View(req_category_list);
             }
 
