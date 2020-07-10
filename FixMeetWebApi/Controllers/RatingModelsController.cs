@@ -81,7 +81,7 @@ namespace FixMeetWebApi.Controllers
             ratingModels.SuppFirstName = supplier.FirstName;
             ratingModels.SuppLastName = supplier.LastName;
             ratingModels.CustFirstName = customer.FirstName;
-            ratingModels.SuppLastName = supplier.LastName;
+            ratingModels.CustLastName = customer.LastName;
             
             //ratingModels.BookingId = 
             if (ModelState.IsValid && ratingModels.Rating > 0 &&ratingModels.Rating < 6)
@@ -89,7 +89,9 @@ namespace FixMeetWebApi.Controllers
 
                 db.RatingModels.Add(ratingModels);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "BookingModels");
+
+                //return RedirectToAction("Index");
             }
 
             return View(ratingModels);
