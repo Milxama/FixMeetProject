@@ -28,7 +28,7 @@ namespace FixMeetWebApi.Controllers
 
             if (userRole == UserRole.Supplier)
             {
-                var offer = db.OfferModels.Where(off => off.UserID == user_id).ToList();
+                var offer = db.OfferModels.Where(off => off.UserID == user_id && off.Request.IsOpen).ToList();
                 return View(offer);
             }
             if (userRole == UserRole.Customer)
@@ -39,6 +39,28 @@ namespace FixMeetWebApi.Controllers
             }
 
             return View(db.OfferModels.ToList());
+        }
+
+        public ActionResult ClosedOffers()
+        {
+            var user_id = User.Identity.GetUserId();
+            var user = db.Users.Where(u => u.Id == user_id).FirstOrDefault();
+            var userRole = user.UserRole;
+
+            //if (userRole == UserRole.Supplier)
+            //{
+            //    var req_category_list = db.RequestModels.Where(r => r.Category == user.Category && r.IsOpen == true).ToList();
+            //    return View(req_category_list);
+            //}
+
+            if (userRole == UserRole.Supplier)
+            {
+                var offer_list = db.OfferModels.Where(off => off.UserID == user_id && off.Request.IsOpen == false).ToList();
+                return View(offer_list);
+            }
+
+
+            return View(db.RequestModels.ToList());
         }
 
         // GET: OfferModels/Details/5
@@ -67,7 +89,7 @@ namespace FixMeetWebApi.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Description, Cost")] OfferModels offerModels, int requestId)
+        public ActionResult Create([Bind(Include = "Description, Cost, PhoneNumber")] OfferModels offerModels, int requestId)
         {
             //var rwq = db.RequestModels.Where(o => o.RequestID == requestId).FirstOrDefault().RequestID;
             

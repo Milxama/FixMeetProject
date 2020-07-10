@@ -24,7 +24,7 @@ namespace FixMeetWebApi.Controllers
             
             if(userRole == UserRole.Supplier)
             {
-                var req_category_list = db.RequestModels.Where(r => r.Category == user.Category && r.IsOpen == true).ToList();
+                var req_category_list = db.RequestModels.Where(r => r.Category == user.Category && r.IsOpen == true && r.Address == user.Address).ToList();
                 return View(req_category_list);
             }
 
@@ -85,7 +85,7 @@ namespace FixMeetWebApi.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Category,Description")] RequestModels requestModels)
+        public ActionResult Create([Bind(Include = "Category, Description, PhoneNumber")] RequestModels requestModels)
         {
             
            
@@ -108,7 +108,7 @@ namespace FixMeetWebApi.Controllers
                 requestModels.Offers = null;
                 requestModels.CustomerFirstName = user.FirstName;
                 requestModels.CustomerLastName = user.LastName;
-               // requestModels.Address = user.Address;
+                requestModels.Address = user.Address;
                 db.RequestModels.Add(requestModels);
                 db.SaveChanges();
                 return RedirectToAction("Index");
