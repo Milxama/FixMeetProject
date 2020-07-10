@@ -36,6 +36,8 @@ namespace FixMeetWebApi.Models
         [DisplayName("Last Name")]
         public string CustomerLastName { get; set; }
 
+        public string Address { get; set; }
+        public string PhoneNumber { get; set; }
 
         public virtual IList<OfferModels> Offers { get; set; }
     }
