@@ -5,6 +5,11 @@
 @using FixMeetWebApi.Models;
 
 @{
+    ViewBag.Title = "ClosedOffers";
+}
+
+<h2>Closed Offers</h2>
+@{
     var db = new ApplicationDbContext();
     var user_id = User.Identity.GetUserId();
     var user_role = db.Users.Where(u => u.Id == user_id).FirstOrDefault().UserRole;
@@ -14,31 +19,9 @@
     //var req = db.Offer
 
 }
-@{
-    if (user_role == UserRole.Customer)
-    {
-        ViewBag.Title = "My Offers";
-        <h2>My Offers</h2>
-    }
-    else
-    {
-        ViewBag.Title = "List Of Offers";
-        <h2>List Of Offers</h2>
-    }
-}
-
-
 @*<p>
-        @if (user_role == UserRole.Supplier)
-        {
-            @Html.ActionLink("Create New", "Create")
-        }
+        @Html.ActionLink("Create New", "Create")
     </p>*@
-@if (user_role == UserRole.Supplier)
-{
-    @Html.ActionLink("Closed Offers", "ClosedOffers")
-
-}
 <table class="table">
     <tr>
         @*<th>
@@ -131,43 +114,12 @@
                     @Html.DisplayFor(modelItem => item.RequestID)
                 </td>*@
             <td>
-                @if (user_role == UserRole.Customer)
-                {
-                    @Html.ActionLink("Booking", "Create", "BookingModels", new { item.OfferID }, null)
-                    <span>|</span>
-                }
-
-
+            <td>
                 @*@Html.ActionLink("Edit", "Edit", new { id = item.OfferID }) |*@
-                @Html.ActionLink("Details", "Details", new { id = item.OfferID }) |
-
-                @if (user_role == UserRole.Supplier)
-
-                {
-                    @Html.ActionLink("Delete", "Delete", new { id = item.OfferID })
-                    <span>|</span>
-                }
-
-
-                @{
-                    var chat = db.NegotiationChatModels.Where(ch => ch.OfferID == item.OfferID).FirstOrDefault();
-                }
-                @if (chat == null)
-                {
-                    @Html.ActionLink("Send Message", "Create", "NegotiationChatModels", new { item.OfferID }, null)
-                }
-                @if (chat != null)
-                {
-                    @Html.ActionLink("Chat", "Negotiation", "NegotiationChatModels", new { item.OfferID }, null)
-                }
-
-
+                @Html.ActionLink("Details", "Details", new { id = item.OfferID })
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.OfferID })*@
             </td>
         </tr>
     }
 
 </table>
-
-<p>
-    @Html.ActionLink("Back to My Requests", "Index", "RequestModels")
-</p>

@@ -41,6 +41,28 @@ namespace FixMeetWebApi.Controllers
             return View(db.OfferModels.ToList());
         }
 
+        public ActionResult ClosedOffers()
+        {
+            var user_id = User.Identity.GetUserId();
+            var user = db.Users.Where(u => u.Id == user_id).FirstOrDefault();
+            var userRole = user.UserRole;
+
+            //if (userRole == UserRole.Supplier)
+            //{
+            //    var req_category_list = db.RequestModels.Where(r => r.Category == user.Category && r.IsOpen == true).ToList();
+            //    return View(req_category_list);
+            //}
+
+            if (userRole == UserRole.Supplier)
+            {
+                var offer_list = db.OfferModels.Where(off => off.UserID == user_id && off.Request.IsOpen == false).ToList();
+                return View(offer_list);
+            }
+
+
+            return View(db.RequestModels.ToList());
+        }
+
         // GET: OfferModels/Details/5
         public ActionResult Details(int? id)
         {
