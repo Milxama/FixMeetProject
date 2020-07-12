@@ -12,22 +12,6 @@
     var user_category = db.Users.Where(u => u.Id == user_id).FirstOrDefault().Category;
     var user_name = db.Users.Where(us => us.Id == user_id).FirstOrDefault().FirstName;
 
-    //var user_role = user.UserRole.;
-
-
-
-    //var userMail = User.Identity.GetUserName();
-    //var user = User.Identity.Name;
-    //var context = new ApplicationDbContext();
-    //var username = User.Identity.GetUserId();
-
-    //var userRole = context.Users.Where(u => u.Email == username).FirstOrDefault().UserRole.ToString();
-    //var u = context.Users.
-    //if (userRole == "Customer") //if costumer
-    //    {
-    //    //show this
-    //}
-
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
              @Html.AntiForgeryToken()
@@ -51,28 +35,18 @@
             }
         }
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-        @*<li>@Html.ActionLink("My Requests", "Index", "RequestModels", routeValues: null, htmlAttributes: new { id = "requestLink" })</li>
-        <li>@Html.ActionLink("My Offers", "Index", "OfferModels", routeValues: null, htmlAttributes: new { id = "offertLink" })</li>
-        <li>@Html.ActionLink("Create Booking", "Create", "BookingModels", routeValues: null, htmlAttributes: new { id = "bookingtLink" })</li>*@
-
-
         @{
 
             if (user_role == UserRole.Customer) //if costumer
             {
                 <li>@Html.ActionLink("My Requests", "Index", "RequestModels", routeValues: null, htmlAttributes: new { id = "requestLink" })</li>
-                //<li>@Html.ActionLink("My Offers", "Index", "OfferModels", routeValues: null, htmlAttributes: new { id = "offertLink" })</li>
-                <li>@Html.ActionLink("My Bookings", "Index", "BookingModels")</li>
-                @*<li>@Html.ActionLink("My Bookings", "Index", "BookingModels", routeValues: null, htmlAttributes: new { id = "bookingtLink" })</li>*@
-            }
+                <li>@Html.ActionLink("My Bookings", "Index", "BookingModels")</li>            }
             if (user_role == UserRole.Supplier)
             {
 
                 <li>@Html.ActionLink("List of Requests", "Index", "RequestModels", routeValues: null, htmlAttributes: new { id = "requestLink" })</li>
-                //<li>@Html.ActionLink("My Offers", "Index", "OfferModels", routeValues: null, htmlAttributes: new { id = "offertLink" })</li>
                 <li>@Html.ActionLink("My Offers", "Index", "OfferModels")</li>
                 <li>@Html.ActionLink("My Bookings", "Index", "BookingModels")</li>
-                @*<li>@Html.ActionLink("My Bookings", "Index", "BookingModels", routeValues: null, htmlAttributes: new { id = "bookingtLink" })</li>*@
             }
 
         }

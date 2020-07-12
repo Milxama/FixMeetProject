@@ -16,9 +16,6 @@ namespace FixMeetWebApi.Models
         [Required]
         public DateTime BookingDate { get; set; }
 
-        //[Required]
-        //public string Description { get; set; }
-
         [Required]
         public int OfferID { get; set; }
 
@@ -40,14 +37,6 @@ namespace FixMeetWebApi.Models
 
         [DisplayName("Supplier Last Name")]
         public string SuppLastName { get; set; }
-
-        // virtual public ApplicationUser Customer { get; set; }
-
-        //[Required]
-        //public int CustomerId { get; set; }
-
-        //[Required]
-        //public int SupplierId { get; set; }
 
 
     }

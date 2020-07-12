@@ -10,15 +10,11 @@
 <h2>Negotiation</h2>
 @{
     var db = new ApplicationDbContext();
-    //var user = User.Identity.GetUserId();
     var users = db.Users.ToList();
-
 }
 <p>
-        @*@Html.ActionLink("Create New", "Create")*@
-        @Html.ActionLink("Send Message", "Create", new { @Model.FirstOrDefault().OfferID }, null)
-        @* @Html.ActionLink("Send Message", "Create", "NegotiationChatModels", new { item.OfferID }, null)*@
-    </p>
+    @Html.ActionLink("Send Message", "Create", new { @Model.FirstOrDefault().OfferID }, null)
+</p>
 
 <table class="table">
     <tr>
@@ -32,16 +28,6 @@
         <th>
             @Html.DisplayNameFor(model => model.ChatDate)
         </th>
-        @*<th>
-                @Html.DisplayNameFor(model => model.OfferID)
-            </th>*@
-        @*<th>
-                @Html.DisplayNameFor(model => model.CustId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SuppId)
-            </th>*@
-        <th></th>
     </tr>
 
     @foreach (var item in Model)
@@ -57,26 +43,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ChatDate)
             </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.OfferID)
-                </td>*@
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.CustId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SuppId)
-                </td>*@
-            @*<td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ChatId }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.ChatId }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ChatId })
-
-                </td>*@
         </tr>
-
-
-
-
     }
-    @*@Html.ActionLink("Send Message", "Create", "NegotiationChatModels", new { @Model.FirstOrDefault().OfferID }, null)*@
 </table>
+@Html.ActionLink("Back to Requests", "Index", "RequestModels")

@@ -8,23 +8,9 @@
     var user_id = User.Identity.GetUserId();
     var user_role = db.Users.Where(u => u.Id == user_id).FirstOrDefault().UserRole;
     var address = db.Users.Where(u => u.Id == user_id).FirstOrDefault().Address;
-
-
-    //var offer_count = 0;
-
     var request = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault();
-
     var old_requests = db.RequestModels.Where(oreq => oreq.IsOpen == false).ToList();
     var old_count = old_requests.Count();
-    //if (request.IsOpen == true)
-    //{
-    //    var requestId = request.RequestID;
-    //    var offerList = db.OfferModels.Where(off => off.RequestID == requestId).ToList();
-    //    offer_count = offerList.Count();
-    //}
-
-
-
 }
 @{
     if (user_role == UserRole.Customer)
@@ -39,20 +25,18 @@
     }
 }
 
-
-
 <p>
     @if (user_role == UserRole.Customer)
     {
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Open new Request", "Create")
     }
 </p>
 
 <table class="table">
     <tr>
-        @*<th>
-            @Html.DisplayNameFor(model => model.RequestID)
-        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.RequestDate)
+        </th>
         @if (user_role == UserRole.Supplier)
         {
             <th>
@@ -62,18 +46,21 @@
                 @Html.DisplayNameFor(model => model.CustomerLastName)
             </th>
         }
-        <th>
-            @Html.DisplayNameFor(model => model.RequestDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Category)
-        </th>
-        @*@if (user_role == UserRole.Supplier)
+        @if (user_role == UserRole.Customer)
+        {
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+        }
+        @if (user_role == UserRole.Supplier)
         {
             <th>
                 @Html.DisplayNameFor(model => model.Address)
             </th>
-        }*@
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+        }
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
@@ -85,61 +72,63 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.RequestID)
-            </td>*@
-            @if (user_role == UserRole.Supplier)
-            {
-                <td>
-                    @Html.DisplayFor(modelItem => item.CustomerFirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CustomerLastName)
-                </td>
-            }
-            <td>
-                @Html.DisplayFor(modelItem => item.RequestDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            @*@if (user_role == UserRole.Supplier)
-            {
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-            }*@
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsOpen, new { @id = "isOpenSelectList", @class = "form-control", onchange = "setOpenSelected()" })
-            </td>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.RequestDate)
+    </td>
+    @if (user_role == UserRole.Supplier)
+    {
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerLastName)
+        </td>
+    }
 
-            <td>
+    @if (user_role == UserRole.Customer)
+    {
+        <td>
+            @Html.DisplayFor(modelItem => item.Category)
+        </td>
+    }
+    @if (user_role == UserRole.Supplier)
+    {
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+    }
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.IsOpen, new { @id = "isOpenSelectList", @class = "form-control", onchange = "setOpenSelected()" })
+    </td>
 
-                @if (user_role == UserRole.Supplier)
-                {
-                    @Html.ActionLink("Reserve an offer", "Create", "OfferModels", new { item.RequestID }, null)
+    <td>
 
-
-                }
-                @if (user_role == UserRole.Customer)
-                {
-
-                    @Html.ActionLink("Offers to this Request", "Index", "OfferModels", new { item.RequestID }, null)
-                } |
-
-                @Html.ActionLink("Details", "Details", new { id = item.RequestID }) |
-                @if (user_role == UserRole.Customer)
-                {
-                    @Html.ActionLink("Delete", "Delete", new { id = item.RequestID })
-                } 
+        @if (user_role == UserRole.Supplier)
+        {
+            @Html.ActionLink("Reserve an offer", "Create", "OfferModels", new { item.RequestID }, null)
 
 
-            </td>
-        </tr>
+        }
+        @if (user_role == UserRole.Customer)
+        {
+
+            @Html.ActionLink("Offers to this Request", "Index", "OfferModels", new { item.RequestID }, null)
+        } |
+
+        @Html.ActionLink("Details", "Details", new { id = item.RequestID }) |
+        @if (user_role == UserRole.Customer)
+        {
+            @Html.ActionLink("Delete", "Delete", new { id = item.RequestID })
+        }
+    </td>
+</tr>
     }
 
 </table>

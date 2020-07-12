@@ -88,19 +88,6 @@ namespace FixMeetWebApi.Controllers
                 return RedirectToAction("Index");
             }
 
-            //offerModels.RequestID = requestId;
-            //offerModels.Request = req;
-            //var request_id = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault().RequestID;
-
-            //offerModels.RequestID = request_id;
-            //offerModels.Request = request;
-
-            //var offerList = db.OfferModels.Where(offer => offer.RequestID == request_id).ToList();
-
-
-            //var userName = User.Identity.GetUserName();
-            //var requestId = db.Users.Where(u => u.UserName == userName).FirstOrDefault().;
-            // && user_role == UserRole.Supplier
             if (ModelState.IsValid && user_role == UserRole.Supplier)
             {
                 offerModels.OfferDate = DateTime.Now;

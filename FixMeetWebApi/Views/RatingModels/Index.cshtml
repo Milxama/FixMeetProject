@@ -4,11 +4,8 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Ratings</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -20,15 +17,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Rating)
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.BookingId)
-        </th>*@
-        @*<th>
-            @Html.DisplayNameFor(model => model.CustId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SuppId)
-        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.CustFirstName)
         </th>
@@ -55,15 +43,6 @@
         <td>
             @Html.DisplayFor(modelItem => item.Rating)
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.BookingId)
-        </td>*@
-        @*<td>
-            @Html.DisplayFor(modelItem => item.CustId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SuppId)
-        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.CustFirstName)
         </td>
@@ -76,11 +55,6 @@
         <td>
             @Html.DisplayFor(modelItem => item.SuppLastName)
         </td>
-        @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RatingId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RatingId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RatingId })
-        </td>*@
     </tr>
 }
 

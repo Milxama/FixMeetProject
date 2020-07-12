@@ -6,9 +6,6 @@
 
 <h2>ClosedRequests</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -38,9 +35,7 @@
             </td>
 
             <td>
-                @*@Html.ActionLink("Edit", "Edit", new { id=item.RequestID }) |*@
                 @Html.ActionLink("Details", "Details", new { id = item.RequestID })
-                @*@Html.ActionLink("Delete", "Delete", new { id=item.RequestID })*@
 
             </td>
         </tr>

@@ -9,10 +9,6 @@
     var user_id = User.Identity.GetUserId();
     var user_role = db.Users.Where(u => u.Id == user_id).FirstOrDefault().UserRole;
     var sup_users = db.Users.Where(u => u.UserRole == UserRole.Supplier).ToList();
-    //var request = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault();
-
-    //var req = db.Offer
-
 }
 @{
     if (user_role == UserRole.Customer)
@@ -27,18 +23,13 @@
     }
 }
 
+@if (user_role == UserRole.Supplier)
+{
+    @Html.ActionLink("Closed Offers", "ClosedOffers")
 
-@*<p>
-    @if (user_role == UserRole.Supplier)
-    {
-        @Html.ActionLink("Create New", "Create")
-    }
-</p>*@
+}
 <table class="table">
     <tr>
-        @*<th>
-            @Html.DisplayNameFor(model => model.OfferID)
-        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.OfferDate)
         </th>
@@ -61,6 +52,12 @@
                 @Html.DisplayNameFor(model => model.CustomerLastName)
             </th>
         }
+        @if(user_role == UserRole.Customer)
+        {
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+        }
 
         <th>
             @Html.DisplayNameFor(model => model.Description)
@@ -71,18 +68,12 @@
         <th>
             Supplier Rating
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.RequestID)
-        </th>*@
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
 <tr>
-    @*<td>
-            @Html.DisplayFor(modelItem => item.OfferID)
-        </td>*@
     <td>
         @Html.DisplayFor(modelItem => item.OfferDate)
     </td>
@@ -105,7 +96,12 @@
         </td>
     }
 
-
+    @if (user_role == UserRole.Customer)
+    {
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+    }
     <td>
         @Html.DisplayFor(modelItem => item.Description)
     </td>
@@ -113,56 +109,43 @@
         @Html.DisplayFor(modelItem => item.Cost)
     </td>
     <td>
-             @sup_users.Where(s => s.Id == item.UserID).FirstOrDefault().Rating
-             
+        @sup_users.Where(s => s.Id == item.UserID).FirstOrDefault().Rating
+    </td>
+    <td>
+        @if (user_role == UserRole.Customer)
+        {
+            @Html.ActionLink("Booking", "Create", "BookingModels", new { item.OfferID }, null)
+            <span>|</span>
+        }
+        @Html.ActionLink("Details", "Details", new { id = item.OfferID }) |
 
-             
+        @if (user_role == UserRole.Supplier)
+
+        {
+            @Html.ActionLink("Delete", "Delete", new { id = item.OfferID })
+            <span>|</span>
+        }
 
 
+        @{
+            var chat = db.NegotiationChatModels.Where(ch => ch.OfferID == item.OfferID).FirstOrDefault();
+        }
+        @if (chat == null)
+        {
+            @Html.ActionLink("Send Message", "Create", "NegotiationChatModels", new { item.OfferID }, null)
+        }
+        @if (chat != null)
+        {
+            @Html.ActionLink("Chat", "Negotiation", "NegotiationChatModels", new { item.OfferID }, null)
+        }
 
 
     </td>
-    @*<td>
-            @Html.DisplayFor(modelItem => item.RequestID)
-        </td>*@
-<td>
-    @if (user_role == UserRole.Customer)
-    {
-        @Html.ActionLink("Booking", "Create", "BookingModels", new { item.OfferID }, null)
-        <span>|</span>
-    }
-
-
-    @*@Html.ActionLink("Edit", "Edit", new { id = item.OfferID }) |*@
-    @Html.ActionLink("Details", "Details", new { id = item.OfferID }) |
-
-    @if (user_role == UserRole.Supplier)
-
-    {
-        @Html.ActionLink("Delete", "Delete", new { id = item.OfferID })
-        <span>|</span>
-    }
-
-
-    @{
-        var chat = db.NegotiationChatModels.Where(ch => ch.OfferID == item.OfferID).FirstOrDefault();
-    }
-    @if (chat == null)
-    {
-        @Html.ActionLink("Send Message", "Create", "NegotiationChatModels", new { item.OfferID }, null)
-    }
-    @if (chat != null)
-    { 
-        @Html.ActionLink("Chat", "Negotiation", "NegotiationChatModels", new { item.OfferID }, null)
-    }
-
-
-</td>
 </tr>
     }
 
 </table>
-<p>
 
+<p>
     @Html.ActionLink("Back to My Requests", "Index", "RequestModels")
 </p>
