@@ -26,10 +26,7 @@ namespace FixMeetWebApi.Controllers
         }
         public ActionResult Negotiation(int offerId)
         {
-             var chat = db.NegotiationChatModels.Where(c => c.OfferID == offerId).ToList();
-
-            //return View(Negotiation, "NegotiationChatModels", chat, new { offerId });
-            //return RedirectToAction("Index", new { offerId });
+            var chat = db.NegotiationChatModels.Where(c => c.OfferID == offerId).ToList();
             return View(chat);
         }
         // GET: NegotiationChatModels/Details/5
@@ -61,18 +58,11 @@ namespace FixMeetWebApi.Controllers
         public ActionResult Create([Bind(Include = "ChatText")] NegotiationChatModels negotiationChatModels, int? offerId)
         {
             var user_id = User.Identity.GetUserId();
-
             negotiationChatModels.MessageOwnerId = user_id;
-
             negotiationChatModels.ChatDate = DateTime.Now;
             negotiationChatModels.OfferID = (int)offerId;
-
             var offer = db.OfferModels.Where(off => off.OfferID == offerId).FirstOrDefault();
             negotiationChatModels.SuppId = offer.UserID;
-
-            //var booking = db.BookingModels.Where(book => book.OfferID == offerId).FirstOrDefault();
-            //negotiationChatModels.CustId = booking.CustId;
-
             var req = db.RequestModels.Where(off => off.Offers.Where(o => o.OfferID == offerId).FirstOrDefault().OfferID == offerId).FirstOrDefault();
             negotiationChatModels.CustId = req.UserID;
 

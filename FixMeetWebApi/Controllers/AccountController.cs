@@ -150,17 +150,11 @@ namespace FixMeetWebApi.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-
             if (model.UserRole.ToString() == "Customer")
             {
                 model.Radius = null;
                 model.Category = 0;
             }
-           
-            //if (model.UserRole.ToString() == "Supplier")
-            //{
-            //   model.
-            //}
 
             if (ModelState.IsValid)
             {
@@ -168,21 +162,14 @@ namespace FixMeetWebApi.Controllers
                 var user = new ApplicationUser {
                     UserName = model.Email,
                     Email = model.Email,
-                    //UserID = model.UserID,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    ////NickName = model.UserName,
                     Address = model.Address,
-                    //Password = model.Password,
-                    //ConfirmPassword = model.ConfirmPassword,
                     UserRole = model.UserRole,
                     Category = model.Category,
                     Radius = model.Radius
                 };
-                //if(model.UserRole.ToString() == "Customer")
-                //{
 
-                //}
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

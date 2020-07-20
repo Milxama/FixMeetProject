@@ -11,28 +11,15 @@ namespace FixMeetWebApi.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-
-       //  public int UserID { get; set; }
-
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        //  public string Email { get; set; }
-
-       //  public string ConfirmEmail { get; set; }
-         //public string UserName { get; set; }
-        //public string Password { get; set; }
-        //public string ConfirmPassword { get; set; }
         public string Address { get; set; }
 
         public UserRole UserRole { get; set; }
         public Category Category { get; set; }
 
         public string Radius { get; set; }
-
-      //  public virtual IList<BookingModels> Bookings { get; set; }
-       // public virtual IList<OfferModels> Offers { get; set; }
-       // public virtual IList<RequestModels> Requests { get; set; }
-       public double Rating { get; set; }
+        public double Rating { get; set; }
 
 
 
@@ -68,7 +55,5 @@ namespace FixMeetWebApi.Models
 
         object placeHolderVariable;
         public System.Data.Entity.DbSet<FixMeetWebApi.Models.NegotiationChatModels> NegotiationChatModels { get; set; }
-
-        //object placeHolderVariable;
     }
 }

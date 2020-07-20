@@ -83,25 +83,15 @@
             @Html.DisplayFor(model => model.IsOpen)
         </dd>
 
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.UserID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserID)
-        </dd>*@
-
     </dl>
 </div>
 <p>
 
     @if (user_role == UserRole.Customer && Model.IsOpen == true)
     {
-        @*@Html.ActionLink("Edit", "Edit", new { id = Model.RequestID })*@ 
-        
         @Html.ActionLink("Back to List", "Index")
     }
+
     @if (user_role == UserRole.Customer && Model.IsOpen == false)
     {
         @Html.ActionLink("Back to List", "ClosedRequests")

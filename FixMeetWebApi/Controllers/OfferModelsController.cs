@@ -47,12 +47,6 @@ namespace FixMeetWebApi.Controllers
             var user = db.Users.Where(u => u.Id == user_id).FirstOrDefault();
             var userRole = user.UserRole;
 
-            //if (userRole == UserRole.Supplier)
-            //{
-            //    var req_category_list = db.RequestModels.Where(r => r.Category == user.Category && r.IsOpen == true).ToList();
-            //    return View(req_category_list);
-            //}
-
             if (userRole == UserRole.Supplier)
             {
                 var offer_list = db.OfferModels.Where(off => off.UserID == user_id && off.Request.IsOpen == false).ToList();
@@ -91,10 +85,6 @@ namespace FixMeetWebApi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Description, Cost, PhoneNumber")] OfferModels offerModels, int requestId)
         {
-            //var rwq = db.RequestModels.Where(o => o.RequestID == requestId).FirstOrDefault().RequestID;
-            
-           
-
             var user_id = User.Identity.GetUserId();
             var user = db.Users.Where(u => u.Id == user_id).FirstOrDefault();
             var user_role = user.UserRole;
@@ -110,19 +100,6 @@ namespace FixMeetWebApi.Controllers
                 return RedirectToAction("Index");
             }
 
-            //offerModels.RequestID = requestId;
-            //offerModels.Request = req;
-            //var request_id = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault().RequestID;
-
-            //offerModels.RequestID = request_id;
-            //offerModels.Request = request;
-
-            //var offerList = db.OfferModels.Where(offer => offer.RequestID == request_id).ToList();
-
-
-            //var userName = User.Identity.GetUserName();
-            //var requestId = db.Users.Where(u => u.UserName == userName).FirstOrDefault().;
-            // && user_role == UserRole.Supplier
             if (ModelState.IsValid && user_role == UserRole.Supplier)
             {
                 offerModels.OfferDate = DateTime.Now;

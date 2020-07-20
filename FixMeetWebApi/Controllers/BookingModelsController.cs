@@ -33,17 +33,6 @@ namespace FixMeetWebApi.Controllers
                 var booking = db.BookingModels.Where(book => book.SuppId == user_id).ToList();
                 return View(booking);
             }
-            //var offer = db.OfferModels.Where(off => off.OfferID == offerId).FirstOrDefault();
-            //var sup_first_name = offer.SupplierFirstName;
-            //var sup_last_name = offer.SupplierLastName;
-
-            //var request = db.RequestModels.Where(r => r.UserID == user_id && r.IsOpen == true).FirstOrDefault();
-            //var cust_first_name = request.CustomerFirstName;
-            //var cust_last_name = request.CustomerLastName;
-
-            //var booking_list = db.BookingModels.Where(booking => booking.CustFirstName == cust_first_name && booking.CustLastName == cust_last_name).ToList();
-
-
 
             return View(db.BookingModels.ToList());
         }
@@ -76,18 +65,12 @@ namespace FixMeetWebApi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind] BookingModels bookingModels, int offerId)
         {
-
             var offer = db.OfferModels.Where(off => off.OfferID == offerId).FirstOrDefault();
             var user_id = User.Identity.GetUserId();
             var request = db.RequestModels.Where(req => req.RequestID == offer.RequestID).FirstOrDefault();
             var requestIsOpen = request.IsOpen;
             var request_id = offer.RequestID;
             var supp_id = offer.UserID;
-
-
-            
-
-            
 
             if (ModelState.IsValid && requestIsOpen == true)
             {

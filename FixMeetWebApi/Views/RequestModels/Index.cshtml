@@ -8,23 +8,9 @@
     var user_id = User.Identity.GetUserId();
     var user_role = db.Users.Where(u => u.Id == user_id).FirstOrDefault().UserRole;
     var address = db.Users.Where(u => u.Id == user_id).FirstOrDefault().Address;
-
-
-    //var offer_count = 0;
-
     var request = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault();
-
     var old_requests = db.RequestModels.Where(oreq => oreq.IsOpen == false).ToList();
     var old_count = old_requests.Count();
-    //if (request.IsOpen == true)
-    //{
-    //    var requestId = request.RequestID;
-    //    var offerList = db.OfferModels.Where(off => off.RequestID == requestId).ToList();
-    //    offer_count = offerList.Count();
-    //}
-
-
-
 }
 @{
     if (user_role == UserRole.Customer)
@@ -50,9 +36,6 @@
 
 <table class="table">
     <tr>
-        @*<th>
-            @Html.DisplayNameFor(model => model.RequestID)
-        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.RequestDate)
         </th>

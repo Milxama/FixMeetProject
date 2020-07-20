@@ -14,19 +14,10 @@
     var user_id = User.Identity.GetUserId();
     var user_role = db.Users.Where(u => u.Id == user_id).FirstOrDefault().UserRole;
     var sup_users = db.Users.Where(u => u.UserRole == UserRole.Supplier).ToList();
-    //var request = db.RequestModels.Where(req => req.UserID == user_id).FirstOrDefault();
-
-    //var req = db.Offer
-
 }
-@*<p>
-        @Html.ActionLink("Create New", "Create")
-    </p>*@
+
 <table class="table">
     <tr>
-        @*<th>
-                @Html.DisplayNameFor(model => model.OfferID)
-            </th>*@
         <th>
             @Html.DisplayNameFor(model => model.OfferDate)
         </th>
@@ -59,18 +50,12 @@
         <th>
             Supplier Rating
         </th>
-        @*<th>
-                @Html.DisplayNameFor(model => model.RequestID)
-            </th>*@
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.OfferID)
-                </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.OfferDate)
             </td>
@@ -103,21 +88,9 @@
             <td>
                 @sup_users.Where(s => s.Id == item.UserID).FirstOrDefault().Rating
 
-
-
-
-
-
-
             </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.RequestID)
-                </td>*@
             <td>
-            <td>
-                @*@Html.ActionLink("Edit", "Edit", new { id = item.OfferID }) |*@
                 @Html.ActionLink("Details", "Details", new { id = item.OfferID })
-                @*@Html.ActionLink("Delete", "Delete", new { id = item.OfferID })*@
             </td>
         </tr>
     }

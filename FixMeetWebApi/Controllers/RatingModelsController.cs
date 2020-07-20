@@ -23,14 +23,6 @@ namespace FixMeetWebApi.Controllers
             return View(db.RatingModels.ToList());
         }
 
-        //public ActionResult ViewSupplierInformation(int? offerId)
-        //{
-        //    var offer = db.OfferModels.Where(off => off.OfferID == offerId).FirstOrDefault();
-        //    var suppId = offer.UserID;
-        //    var user = db.Users.Where(us => us.Id == suppId).FirstOrDefault();
-        //    var rating = user.Rating;
-        //    return View(user);
-        //}
         // GET: RatingModels/Details/5
         public ActionResult Details(int? id)
         {

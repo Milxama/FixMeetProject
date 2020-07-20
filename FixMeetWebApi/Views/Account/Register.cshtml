@@ -11,12 +11,6 @@
     <h4>Create a new account.</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
-    @*<div class="form-group">
-            @Html.LabelFor(m => m.UserID, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.UserID, new { @class = "form-control" })
-            </div>
-        </div>*@
     <div class="form-group">
         @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -99,11 +93,6 @@
 }
 
 <script>
-
-    //document.onload = "setRoleSelectd()";
-    //$(document).ready(function () {
-    //    setRoleSelectd();
-    ////});
     function setRoleSelected() {
         var selectedRole = document.getElementById("RoleSelectList").value;
         if (selectedRole == 0) {
