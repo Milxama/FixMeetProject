@@ -46,37 +46,73 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @users.Where(us => us.Id == item.MessageOwnerId).FirstOrDefault().FirstName  @users.Where(us => us.Id == item.MessageOwnerId).FirstOrDefault().LastName
-            </td>
+        //{
+        //    var ownerRole = @users.Where(u => u.Id == item.MessageOwnerId).FirstOrDefault().UserRole;
+        //}
+        if (@users.Where(u => u.Id == item.MessageOwnerId).FirstOrDefault().UserRole == UserRole.Customer)
+        {
+            <tr style="background-color: dodgerblue">
+                <td>
+                    @users.Where(us => us.Id == item.MessageOwnerId).FirstOrDefault().FirstName   @users.Where(us => us.Id == item.MessageOwnerId).FirstOrDefault().LastName
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.ChatText)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ChatDate)
-            </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.OfferID)
-                </td>*@
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.CustId)
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChatText)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.SuppId)
-                </td>*@
-            @*<td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ChatId }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.ChatId }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ChatId })
+                    @Html.DisplayFor(modelItem => item.ChatDate)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.OfferID)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.CustId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SuppId)
+                    </td>*@
+                @*<td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ChatId }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.ChatId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ChatId })
 
-                </td>*@
-        </tr>
+                    </td>*@
+            </tr>
+        }
+        else
+        {
+            <tr style="background-color: burlywood">
+                <td>
+                    @users.Where(us => us.Id == item.MessageOwnerId).FirstOrDefault().FirstName   @users.Where(us => us.Id == item.MessageOwnerId).FirstOrDefault().LastName
+                </td>
 
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChatText)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChatDate)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.OfferID)
+                    </td>*@
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.CustId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SuppId)
+                    </td>*@
+                @*<td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ChatId }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.ChatId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.ChatId })
+
+                    </td>*@
+            </tr>
+        }
 
 
 
     }
 </table>
 @Html.ActionLink("Back to Requests", "Index", "RequestModels")
+
