@@ -119,9 +119,6 @@ namespace FixMeetWebApi.Models
         public Category Category { get; set; }
 
 
-        //[Display(Name = "Radius")]
-        //public string Radius { get; set; }
-
 
     }
 
