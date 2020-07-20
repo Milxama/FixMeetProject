@@ -135,13 +135,18 @@
         }
         @if (chat == null)
         {
-            @Html.ActionLink("Send Message", "Create", "NegotiationChatModels", new { item.OfferID }, null)
+            @Html.ActionLink("New chat", "Create", "NegotiationChatModels", new { item.OfferID }, null)
+            <span>|</span>
         }
         @if (chat != null)
         {
             @Html.ActionLink("Chat", "Negotiation", "NegotiationChatModels", new { item.OfferID }, null)
+            <span>|</span>
         }
-
+        @if (user_role == UserRole.Customer)
+        {
+            @Html.ActionLink("Supplier Comments", "Comments", "RatingModels", new { item.UserID }, null)
+        }
 
     </td>
 </tr>

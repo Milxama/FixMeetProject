@@ -22,6 +22,11 @@ namespace FixMeetWebApi.Controllers
         {
             return View(db.RatingModels.ToList());
         }
+        public ActionResult Comments(string UserID)
+        {
+
+            return View(db.RatingModels.ToList().Where(r => r.SuppId == UserID).OrderByDescending(r => r.Rating));
+        }
 
         // GET: RatingModels/Details/5
         public ActionResult Details(int? id)

@@ -486,6 +486,7 @@
     <Content Include="Views\NegotiationChatModels\Index.cshtml" />
     <Content Include="Views\NegotiationChatModels\Negotiation.cshtml" />
     <Content Include="Views\OfferModels\ClosedOffers.cshtml" />
+    <Content Include="Views\RatingModels\Comments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
