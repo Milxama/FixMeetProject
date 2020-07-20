@@ -40,7 +40,7 @@
             @Html.DisplayFor(modelItem => item.Comment)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Rating)
+            @Html.DisplayFor(modelItem => (float)System.Math.Round((float)item.Rating, 2))
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CustFirstName)

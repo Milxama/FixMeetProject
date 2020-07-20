@@ -111,8 +111,7 @@
         @Html.DisplayFor(modelItem => item.Cost)
     </td>
     <td>
-        @sup_users.Where(s => s.Id == item.UserID).FirstOrDefault().Rating
-
+        @String.Format("{0:0.00}", @sup_users.Where(s => s.Id == item.UserID).FirstOrDefault().Rating)
     </td>
     <td>
         @if (user_role == UserRole.Customer)
