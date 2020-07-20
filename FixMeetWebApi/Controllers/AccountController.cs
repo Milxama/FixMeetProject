@@ -152,7 +152,7 @@ namespace FixMeetWebApi.Controllers
         {
             if (model.UserRole.ToString() == "Customer")
             {
-                model.Radius = null;
+                //model.Radius = null;
                 model.Category = 0;
             }
 
@@ -167,7 +167,7 @@ namespace FixMeetWebApi.Controllers
                     Address = model.Address,
                     UserRole = model.UserRole,
                     Category = model.Category,
-                    Radius = model.Radius
+                    //Radius = model.Radius
                 };
 
                 var result = await UserManager.CreateAsync(user, model.Password);

@@ -18,7 +18,7 @@ namespace FixMeetWebApi.Models
         public UserRole UserRole { get; set; }
         public Category Category { get; set; }
 
-        public string Radius { get; set; }
+        //public string Radius { get; set; }
         public double Rating { get; set; }
 
 
